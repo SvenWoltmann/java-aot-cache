@@ -64,7 +64,9 @@ def main():
         key=lambda key: int(key[2:]),
     )
     with open(csv_file, "w", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=["run", "variant", "wall_ms", *iteration_keys])
+        writer = csv.DictWriter(
+            file, fieldnames=["run", "variant", "wall_ms", *iteration_keys], lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(rows)
 
