@@ -1,0 +1,29 @@
+Installed code by kind and time:
+  JIT0     before first output     222
+  JIT0     later                    15
+  JIT1     before first output     328
+  JIT1     later                    25
+  JIT2     before first output    5039
+  JIT2     later                   193
+  JIT2-OSR before first output       9
+  JIT2-OSR later                     3
+  JIT3     before first output      53
+  JIT3     later                   984
+  JIT3-OSR later                    15
+  JIT4     before first output     456
+  JIT4     later                  1737
+  JIT4-OSR before first output      10
+  JIT4-OSR later                    37
+
+Code made not entrant, by kind and reason:
+  JIT2     not used                                   2626
+  JIT3     not used                                    357
+  JIT4     uncommon trap                                22
+  JIT2     OSR invalidation back branch                 12
+  JIT2-OSR OSR invalidation of lower level               6
+  JIT2     C1 deoptimize for patching                    1
+
+A4 code replaced ('not used') per iteration:
+  
+
+A4 code replaced ('not used'), by the kind of code that replaced it:

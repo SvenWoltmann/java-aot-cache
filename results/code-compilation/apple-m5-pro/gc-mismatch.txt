@@ -1,0 +1,76 @@
+### -XX:+UseSerialGC -XX:AOTMode=auto -Xlog:aot
+[0.009s][info][aot] AOT Code Cache disabled: it was created with UseCondCardMark = true vs current false
+[0.009s][info][aot] Unable to use AOT Code Cache
+Iteration  1:  414 ms (ok)
+### the same without -Xlog:aot
+Iteration  1:  419 ms (ok)
+
+### -XX:+UseSerialGC -XX:AOTMode=required -Xlog:aot
+[0.009s][error][aot,codecache,init] AOT Code Cache disabled: it was created with UseCondCardMark = true vs current false
+Error occurred during initialization of VM
+Unable to use AOT Code Cache.
+### the same without -Xlog:aot
+[0.008s][error][aot,codecache,init] AOT Code Cache disabled: it was created with UseCondCardMark = true vs current false
+Error occurred during initialization of VM
+Unable to use AOT Code Cache.
+
+### -XX:+UseParallelGC -XX:AOTMode=auto -Xlog:aot
+[0.009s][info][aot] AOT Code Cache disabled: it was created with UseCondCardMark = true vs current false
+[0.009s][info][aot] Unable to use AOT Code Cache
+Iteration  1:  407 ms (ok)
+### the same without -Xlog:aot
+Iteration  1:  409 ms (ok)
+
+### -XX:+UseParallelGC -XX:AOTMode=required -Xlog:aot
+[0.009s][error][aot,codecache,init] AOT Code Cache disabled: it was created with UseCondCardMark = true vs current false
+Error occurred during initialization of VM
+Unable to use AOT Code Cache.
+### the same without -Xlog:aot
+[0.009s][error][aot,codecache,init] AOT Code Cache disabled: it was created with UseCondCardMark = true vs current false
+Error occurred during initialization of VM
+Unable to use AOT Code Cache.
+
+### -XX:+UseZGC -XX:AOTMode=auto -Xlog:aot
+[0.003s][warning][aot] Unable to use AOT cache.
+[                    ] The saved state of UseCompressedOops (1) is different from runtime (0), CDS will be disabled.
+[0.003s][error  ][aot] An error has occurred while processing the AOT cache. Run with -Xlog:aot for details.
+[0.003s][error  ][aot] Loading static archive failed.
+[0.004s][warning][aot] Unable to use AOT cache.
+[                    ] The saved state of UseCompressedOops (1) is different from runtime (0), CDS will be disabled.
+[0.004s][error  ][aot] Loading static archive failed.
+[0.004s][error  ][aot] Unable to map shared spaces
+Iteration  1:  589 ms (ok)
+### the same without -Xlog:aot
+[0.004s][warning][aot] Unable to use AOT cache.
+[                    ] The saved state of UseCompressedOops (1) is different from runtime (0), CDS will be disabled.
+[0.004s][error  ][aot] An error has occurred while processing the AOT cache. Run with -Xlog:aot for details.
+[0.004s][error  ][aot] Loading static archive failed.
+[0.005s][warning][aot] Unable to use AOT cache.
+[                    ] The saved state of UseCompressedOops (1) is different from runtime (0), CDS will be disabled.
+[0.005s][error  ][aot] Loading static archive failed.
+[0.005s][error  ][aot] Unable to map shared spaces
+Iteration  1:  603 ms (ok)
+
+### -XX:+UseZGC -XX:AOTMode=required -Xlog:aot
+[0.004s][warning][aot] Unable to use AOT cache.
+[                    ] The saved state of UseCompressedOops (1) is different from runtime (0), CDS will be disabled.
+[0.004s][error  ][aot] An error has occurred while processing the AOT cache. Run with -Xlog:aot for details.
+[0.004s][error  ][aot] Loading static archive failed.
+[0.005s][warning][aot] Unable to use AOT cache.
+[                    ] The saved state of UseCompressedOops (1) is different from runtime (0), CDS will be disabled.
+[0.005s][error  ][aot] Loading static archive failed.
+[0.005s][error  ][aot] Unable to map shared spaces
+Error occurred during initialization of VM
+Unable to use AOT cache.
+### the same without -Xlog:aot
+[0.003s][warning][aot] Unable to use AOT cache.
+[                    ] The saved state of UseCompressedOops (1) is different from runtime (0), CDS will be disabled.
+[0.003s][error  ][aot] An error has occurred while processing the AOT cache. Run with -Xlog:aot for details.
+[0.003s][error  ][aot] Loading static archive failed.
+[0.004s][warning][aot] Unable to use AOT cache.
+[                    ] The saved state of UseCompressedOops (1) is different from runtime (0), CDS will be disabled.
+[0.004s][error  ][aot] Loading static archive failed.
+[0.004s][error  ][aot] Unable to map shared spaces
+Error occurred during initialization of VM
+Unable to use AOT cache.
+

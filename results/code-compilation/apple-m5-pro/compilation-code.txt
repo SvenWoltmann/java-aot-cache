@@ -1,0 +1,43 @@
+Installed code by kind and time:
+  A1       before first output     313
+  A1       later                     9
+  A2       before first output    2932
+  A2       later                     4
+  A4       before first output    1617
+  A4       later                     8
+  AP4      before first output    1889
+  JIT0     before first output     218
+  JIT0     later                    20
+  JIT1     before first output       7
+  JIT1     later                    13
+  JIT2     before first output     444
+  JIT2     later                   300
+  JIT2-OSR before first output       4
+  JIT2-OSR later                    17
+  JIT3     before first output     219
+  JIT3     later                  1036
+  JIT3-OSR later                    15
+  JIT4     before first output     208
+  JIT4     later                  1395
+  JIT4-OSR later                     8
+
+Code made not entrant, by kind and reason:
+  AP4      not used                                   1754
+  A4       not used                                    889
+  A2       C1 deoptimize for patching                  608
+  JIT3     not used                                    459
+  A2       not used                                    420
+  JIT2     not used                                    309
+  A4       uncommon trap                                71
+  JIT4     uncommon trap                                10
+  JIT2-OSR OSR invalidation of lower level               8
+  JIT2     OSR invalidation back branch                  5
+  AP4      uncommon trap                                 4
+  A2       OSR invalidation back branch                  2
+  JIT3-OSR OSR invalidation of lower level               1
+
+A4 code replaced ('not used') per iteration:
+  1:105 2:73 3:43 4:66 5:48 6:51 7:53 8:45 9:41 10:38 11:37 12:31 13:22 14:30 15:25 16:19 17:24 18:14 19:24 20:19 21:10 22:6 23:7 24:6 25:7 26:5 27:3 28:5 29:5 30:2 31:2 32:3 34:2 35:2 36:2 37:4 38:4 39:5 40:1
+
+A4 code replaced ('not used'), by the kind of code that replaced it:
+  JIT4        889

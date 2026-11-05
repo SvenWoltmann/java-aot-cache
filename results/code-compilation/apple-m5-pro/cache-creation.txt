@@ -1,0 +1,18 @@
+Cache creation (training run + assembly), wall time in seconds and cache size in bytes
+
+AotCompile, 20 training iterations, code: 8.121 s, 87425024 bytes
+AotCompile, 20 training iterations, nocode: 3.993 s, 37896192 bytes
+AotCompile, 20 training iterations, code: 7.867 s, 86900736 bytes
+AotCompile, 20 training iterations, nocode: 4.004 s, 37847040 bytes
+AotCompile, 20 training iterations, code: 7.967 s, 87048192 bytes
+AotCompile, 20 training iterations, nocode: 3.967 s, 37896192 bytes
+AotCompile, 20 iterations without creating a cache: 2.636 s
+AotCompile, 20 iterations without creating a cache: 2.617 s
+AotCompile, 20 iterations without creating a cache: 2.609 s
+
+Further caches, size in bytes:
+compile-t5.aot: 66371584 bytes
+compile-t60.aot: 101154816 bytes
+compile-nocounters.aot: 85606400 bytes
+aottest-code.aot: 15843328 bytes
+aottest-nocode.aot: 15007744 bytes
