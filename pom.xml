@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>eu.happycoders</groupId>
+  <artifactId>java-aot-cache</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <java.version>25</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Plugin versions -->
+    <surefire-plugin.version>3.6.1</surefire-plugin.version>
+    <spotless.version>3.10.4</spotless.version>
+    <google-java-format.version>1.36.1</google-java-format.version>
+    <jacoco.version>0.8.16</jacoco.version>
+
+    <!-- SonarQube Cloud setup -->
+    <sonar.projectKey>SvenWoltmann_java-aot-cache</sonar.projectKey>
+    <sonar.organization>svenwoltmann</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.coverage.jacoco.xmlReportPaths>${project.reporting.outputDirectory}/jacoco-ut/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <!-- The programs are workloads that the articles start with and without an AOT cache;
+         there is nothing to unit-test in them. -->
+    <sonar.coverage.exclusions>**/*.java</sonar.coverage.exclusions>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.16.0</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+
+      <!-- Unit test runner -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire-plugin.version}</version>
+        <configuration>
+          <argLine>${surefireArgLine}</argLine>
+        </configuration>
+      </plugin>
+
+      <!-- Spotless plugin to verify code style -->
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>${spotless.version}</version>
+        <configuration>
+          <java>
+            <!-- AotTest.java is the listing of the class-loading article, word for word; the
+                 article wraps a line that google-java-format would join, because the website's
+                 code blocks are at most 86 characters wide. -->
+            <excludes>
+              <exclude>src/main/java/AotTest.java</exclude>
+            </excludes>
+            <googleJavaFormat>
+              <version>${google-java-format.version}</version>
+              <style>GOOGLE</style>
+            </googleJavaFormat>
+            <lineEndings>UNIX</lineEndings>
+          </java>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <!-- Use this profile to measure the code coverage with JaCoCo -->
+    <profile>
+      <id>test-coverage</id>
+      <build>
+        <plugins>
+          <!-- Measure code coverage with JaCoCo -->
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>${jacoco.version}</version>
+            <executions>
+              <execution>
+                <id>pre-unit-test</id>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+                <configuration>
+                  <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+                  <propertyName>surefireArgLine</propertyName>
+                </configuration>
+              </execution>
+              <execution>
+                <id>post-unit-test</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+                <configuration>
+                  <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+                  <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
