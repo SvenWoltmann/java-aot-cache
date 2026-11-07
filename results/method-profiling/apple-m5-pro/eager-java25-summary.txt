@@ -1,0 +1,43 @@
+results/method-profiling/apple-m5-pro/eager-java25.csv: 15 runs per variant, quartiles Q1 / median / Q3
+
+noreplay: java25 -XX:+UnlockDiagnosticVMOptions -XX:-AOTReplayTraining -XX:AOTCache=target/method-profiling/25/compile-t20.aot -cp target/method-profiling/25/AotCompile.jar AotCompile 100
+  wall time [ms]:      6679.2 / 6700.1 / 6737.9
+  iteration 1 [ms]:    396.0 / 399.0 / 402.0
+  median per iteration [ms]: 399 190 137 102 91 101 90 79 74 82 75 67 67 69 65 68 65 70 64 62 66 78 65 60 60 67 64 61 59 61 59 59 60 59 63 60 59 59 61 58 58 57 58 64 64 55 55 54 59 59 58 57 56 57 59 56 56 55 54 58 56 55 55 56 56 58 55 54 54 54 55 54 54 54 54 55 56 55 54 54 54 55 53 53 54 54 54 55 54 54 53 53 55 54 54 53 53 54 55 53
+  iterations 1-1, mean per iteration [ms]: 396.0 / 399.0 / 402.0
+  iterations 2-5, mean per iteration [ms]: 128.5 / 130.5 / 132.0
+  iterations 6-10, mean per iteration [ms]: 85.0 / 85.6 / 86.2
+  iterations 11-20, mean per iteration [ms]: 66.6 / 67.5 / 68.7
+  iterations 21-30, mean per iteration [ms]: 62.7 / 63.8 / 64.4
+  iterations 31-40, mean per iteration [ms]: 59.5 / 60.1 / 61.3
+  iterations 41-60, mean per iteration [ms]: 57.5 / 58.0 / 58.5
+  iterations 61-80, mean per iteration [ms]: 54.9 / 55.1 / 55.4
+  iterations 81-100, mean per iteration [ms]: 53.9 / 54.0 / 54.5
+
+training20: java25 -XX:AOTCache=target/method-profiling/25/compile-t20.aot -cp target/method-profiling/25/AotCompile.jar AotCompile 100
+  wall time [ms]:      6607.6 / 6626.6 / 6640.8
+  iteration 1 [ms]:    371.0 / 374.0 / 376.0
+  median per iteration [ms]: 374 153 122 92 78 84 79 66 69 72 62 60 63 60 59 59 70 67 59 58 64 62 57 59 63 58 57 59 60 64 60 60 58 69 71 58 58 57 63 60 58 60 60 63 58 60 59 58 62 58 58 59 58 63 60 58 58 57 59 62 58 58 59 59 61 57 56 56 58 60 56 57 57 57 60 57 58 57 56 59 57 58 58 57 58 59 57 56 56 57 59 56 56 56 56 59 56 56 56 56
+  iterations 1-1, mean per iteration [ms]: 371.0 / 374.0 / 376.0
+  iterations 2-5, mean per iteration [ms]: 109.5 / 111.2 / 113.2
+  iterations 6-10, mean per iteration [ms]: 73.4 / 74.4 / 75.0
+  iterations 11-20, mean per iteration [ms]: 60.7 / 61.8 / 62.0
+  iterations 21-30, mean per iteration [ms]: 60.2 / 60.4 / 60.9
+  iterations 31-40, mean per iteration [ms]: 61.0 / 61.5 / 61.9
+  iterations 41-60, mean per iteration [ms]: 59.5 / 59.8 / 60.6
+  iterations 61-80, mean per iteration [ms]: 57.7 / 57.9 / 58.2
+  iterations 81-100, mean per iteration [ms]: 57.0 / 57.0 / 57.7
+
+training20-eager: java25 -XX:+UnlockExperimentalVMOptions -XX:+AOTCompileEagerly -XX:AOTCache=target/method-profiling/25/compile-t20.aot -cp target/method-profiling/25/AotCompile.jar AotCompile 100
+  wall time [ms]:      6711.7 / 6723.5 / 6734.5
+  iteration 1 [ms]:    496.0 / 504.0 / 506.0
+  median per iteration [ms]: 504 133 104 79 71 80 76 64 68 70 62 60 65 60 59 60 63 59 59 67 71 59 58 64 61 58 58 60 64 60 60 59 63 59 59 59 68 70 58 58 60 67 63 58 58 59 63 58 58 58 58 64 59 59 60 59 62 58 59 59 58 64 60 59 57 57 59 57 58 57 57 59 58 57 57 58 60 60 57 57 57 59 60 57 57 58 57 60 57 57 57 57 60 57 57 57 57 59 57 57
+  iterations 1-1, mean per iteration [ms]: 496.0 / 504.0 / 506.0
+  iterations 2-5, mean per iteration [ms]: 96.0 / 96.8 / 98.8
+  iterations 6-10, mean per iteration [ms]: 71.2 / 71.8 / 72.2
+  iterations 11-20, mean per iteration [ms]: 61.2 / 61.5 / 61.7
+  iterations 21-30, mean per iteration [ms]: 61.4 / 61.5 / 61.8
+  iterations 31-40, mean per iteration [ms]: 59.7 / 61.4 / 61.7
+  iterations 41-60, mean per iteration [ms]: 59.9 / 60.3 / 61.0
+  iterations 61-80, mean per iteration [ms]: 58.2 / 58.4 / 58.6
+  iterations 81-100, mean per iteration [ms]: 57.5 / 57.7 / 58.0

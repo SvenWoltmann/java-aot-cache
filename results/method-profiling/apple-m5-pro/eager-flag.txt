@@ -1,0 +1,2 @@
+Java 28:  bool AOTCompileEagerly = true {diagnostic} {ergonomic}
+Java 25:  bool AOTCompileEagerly = false {experimental} {default}
