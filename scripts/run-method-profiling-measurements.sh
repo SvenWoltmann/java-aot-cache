@@ -6,7 +6,7 @@
 #
 # Usage: scripts/run-method-profiling-measurements.sh <path-to-jdk-28> <path-to-jdk-25> <machine-id>
 #
-# Runs about 20 minutes. Close other applications first: the script measures
+# Runs about 30 minutes. Close other applications first: the script measures
 # warmup times, and every background load shows up in them. environment.txt
 # records the load average at start and end.
 #
@@ -99,6 +99,18 @@ measure "$out/training-length.csv" 15 --blocks "$blocks" \
   "training60=$java28 -XX:AOTCache=$work/28/compile-t60.aot $compile28 100" \
   "training100=$java28 -XX:AOTCache=$work/28/compile-t100.aot $compile28 100" \
   | tee "$out/training-length-summary.txt"
+
+echo "== Java 28, after the training count is passed, 10 runs of 200 iterations"
+# Lukewarm methods stay at level 2 until they have run as often as in the whole
+# training run; 200 iterations show whether the variants meet afterwards.
+measure "$out/long-run.csv" 10 \
+  --blocks 1-20,21-40,41-60,61-80,81-100,101-120,121-140,141-160,161-180,181-200 \
+  "none=$java28 $compile28 200" \
+  "noreplay=$java28 $no_replay -XX:AOTCache=$work/28/compile-t20.aot $compile28 200" \
+  "training20=$java28 -XX:AOTCache=$work/28/compile-t20.aot $compile28 200" \
+  "training60=$java28 -XX:AOTCache=$work/28/compile-t60.aot $compile28 200" \
+  "training100=$java28 -XX:AOTCache=$work/28/compile-t100.aot $compile28 200" \
+  | tee "$out/long-run-summary.txt"
 
 echo "== Java 25, 15 runs of 100 iterations"
 measure "$out/java25.csv" 15 --blocks "$blocks" \

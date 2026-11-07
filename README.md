@@ -67,10 +67,11 @@ java -XX:+UnlockDiagnosticVMOptions -XX:-AOTCodeCaching \
 
 ### Method profiles (JEP 515)
 
-`scripts/run-method-profiling-measurements.sh <path-to-jdk-28> <path-to-jdk-25> <machine-id>` measures what the method profiles in the AOT cache do to the warmup and the peak performance, in about 20 minutes, and writes the results to `results/method-profiling/<machine-id>/`. All Java 28 caches are created with `-XX:-AOTCodeCaching`, so they contain classes and profiles but no AOT code – like a Java 25 cache. In the variants, `noreplay` is the cache from 20 training iterations started with `-XX:+UnlockDiagnosticVMOptions -XX:-AOTReplayTraining`: the JVM uses the loaded and linked classes, but not the profiles.
+`scripts/run-method-profiling-measurements.sh <path-to-jdk-28> <path-to-jdk-25> <machine-id>` measures what the method profiles in the AOT cache do to the warmup and the peak performance, in about 30 minutes, and writes the results to `results/method-profiling/<machine-id>/`. All Java 28 caches are created with `-XX:-AOTCodeCaching`, so they contain classes and profiles but no AOT code – like a Java 25 cache. In the variants, `noreplay` is the cache from 20 training iterations started with `-XX:+UnlockDiagnosticVMOptions -XX:-AOTReplayTraining`: the JVM uses the loaded and linked classes, but not the profiles.
 
 * `environment.txt`, `cache-creation.txt` – as above; caches from training runs of 5, 20, 60 and 100 iterations
 * `training-length.csv`, `training-length-summary.txt` – Java 28, 15 runs of 100 iterations: without a cache, `noreplay`, and the four training lengths
+* `long-run.csv`, `long-run-summary.txt` – Java 28, 10 runs of 200 iterations: without a cache, `noreplay`, and the caches from 20, 60 and 100 training iterations – whether the variants meet once the iterations have passed the training run
 * `java25.csv`, `java25-summary.txt` – Java 25, 15 runs of 100 iterations: without a cache, `noreplay`, and the cache from 20 training iterations
 * `hello-java28.csv`, `hello-java25.csv` and their summaries – the example program of JEP 515 (`scripts/HelloStreamWarmup.java`), 30 starts each without a cache, with a cache but without profiles, and with profiles
 * `compilations-<java>-<variant>.txt`, `compilation-<java>-<variant>.log.gz` – one run of 100 iterations with `-XX:+PrintCompilation -XX:+CITime`: the compilations per iteration and level (`scripts/compilations-per-iteration.py`) and the accumulated compiler times

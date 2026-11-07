@@ -18,3 +18,5 @@ Load at start: 15:50  up 38 days,  9:35, 1 user, load averages: 2.38 1.93 1.50
 Load at end: 16:09  up 38 days,  9:54, 1 user, load averages: 3.42 3.38 3.05
 training-length.csv repeated with the same caches, because other JVMs ran on the machine during the first series (14:52-14:58Z): 2026-11-07T15:11Z, load at start: 16:11  up 38 days,  9:56, 1 user, load averages: 1.58 2.78 2.85
 training-length.csv repeated, load at end: 16:21  up 38 days, 10:06, 1 user, load averages: 3.96 4.09 3.54
+long-run.csv: measured separately with the caches of the main run, 2026-11-07T15:23Z, load at start: 16:23  up 38 days, 10:08, 1 user, load averages: 1.94 3.27 3.28
+long-run.csv: load at end: 16:34  up 38 days, 10:19, 1 user, load averages: 3.18 3.04 3.10
