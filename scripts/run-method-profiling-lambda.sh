@@ -85,5 +85,12 @@ done
   done
 } > "$out/lambda-inlining.txt"
 
+# The same for AotCompile: the cache from 20 training iterations, as in the main script.
+"$jdk28/bin/java" -XX:+UnlockDiagnosticVMOptions -XX:-AOTCodeCaching \
+  "-Xlog:aot+training=debug:file=$work/aotcompile-training-%p.log" \
+  -XX:AOTCacheOutput="$work/AotCompile.aot" -cp target/method-profiling/28/AotCompile.jar AotCompile 20 \
+  > "$work/aotcompile-cache.log" 2>&1
+python3 -I scripts/summarize-purged.py "$work"/aotcompile-training-*.log > "$out/aotcompile-purged.txt"
+
 echo "AotLambda, load at end: $(uptime)" >> "$out/environment.txt"
 cat "$out/lambda-purged.txt" "$out/lambda-inlining.txt"
