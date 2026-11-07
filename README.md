@@ -66,6 +66,12 @@ java -XX:+UnlockDiagnosticVMOptions -XX:-AOTCodeCaching \
 * `aot-code-entries.txt` – how much AOT code the caches from training runs of 5, 20 and 60 rounds contain (`-Xlog:aot`)
 * `gc-mismatch.txt` – what happens when the cache was created with G1 and the application starts with the Serial, Parallel or Z garbage collector
 
+`scripts/run-code-compilation-training-repeat.sh <path-to-jdk-28> <machine-id> <build-name>` repeats the training-length measurement with three independently created caches per training length, in about 10 minutes. The article's table on the training length comes from the run on 28-ea+20:
+
+* `compile-training-repeat-<build>.csv`, `compile-training-repeat-summary-<build>.txt` – 9 caches (5, 20 and 60 training rounds, three each), 8 runs with 60 rounds per cache
+* `training-repeat-caches-<build>.txt`, `training-repeat-environment-<build>.txt` – cache sizes, JDK build and load
+* `training-repeat-aot-code-ea20.txt` – how much AOT code each of the nine caches on 28-ea+20 contains (`-Xlog:aot`)
+
 ### Method profiles (JEP 515)
 
 `scripts/run-method-profiling-measurements.sh <path-to-jdk-28> <path-to-jdk-25> <machine-id>` measures what the method profiles in the AOT cache do to the warmup and the peak performance, in about 30 minutes, and writes the results to `results/method-profiling/<machine-id>/`. All Java 28 caches are created with `-XX:-AOTCodeCaching`, so they contain classes and profiles but no AOT code – like a Java 25 cache. In the variants, `noreplay` is the cache from 20 training iterations started with `-XX:+UnlockDiagnosticVMOptions -XX:-AOTReplayTraining`: the JVM uses the loaded and linked classes, but not the profiles.

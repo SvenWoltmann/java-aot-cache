@@ -1,0 +1,46 @@
+AOT code per cache of the training-length repeat on 28-ea+20, from -Xlog:aot of one round (2026-11-07)
+
+### t5a.aot
+Mapped 29492480 bytes at address 0x000000013de70010 from AOT Code Cache
+Loaded 6237 AOT code entries from AOT Code Cache
+Read 1027 preload entries from AOT Code Cache
+
+### t5b.aot
+Mapped 28593472 bytes at address 0x0000000141e70010 from AOT Code Cache
+Loaded 6203 AOT code entries from AOT Code Cache
+Read 1021 preload entries from AOT Code Cache
+
+### t5c.aot
+Mapped 29598920 bytes at address 0x0000000142670010 from AOT Code Cache
+Loaded 6247 AOT code entries from AOT Code Cache
+Read 1043 preload entries from AOT Code Cache
+
+### t20a.aot
+Mapped 49230096 bytes at address 0x0000000141e08010 from AOT Code Cache
+Loaded 7810 AOT code entries from AOT Code Cache
+Read 1932 preload entries from AOT Code Cache
+
+### t20b.aot
+Mapped 49050056 bytes at address 0x000000012ee70010 from AOT Code Cache
+Loaded 7775 AOT code entries from AOT Code Cache
+Read 1896 preload entries from AOT Code Cache
+
+### t20c.aot
+Mapped 48743232 bytes at address 0x0000000145604010 from AOT Code Cache
+Loaded 7742 AOT code entries from AOT Code Cache
+Read 1871 preload entries from AOT Code Cache
+
+### t60a.aot
+Mapped 61816192 bytes at address 0x000000013ee70010 from AOT Code Cache
+Loaded 8582 AOT code entries from AOT Code Cache
+Read 2396 preload entries from AOT Code Cache
+
+### t60b.aot
+Mapped 60147544 bytes at address 0x000000012fe70010 from AOT Code Cache
+Loaded 8606 AOT code entries from AOT Code Cache
+Read 2387 preload entries from AOT Code Cache
+
+### t60c.aot
+Mapped 60802200 bytes at address 0x0000000120e6c010 from AOT Code Cache
+Loaded 8574 AOT code entries from AOT Code Cache
+Read 2381 preload entries from AOT Code Cache
