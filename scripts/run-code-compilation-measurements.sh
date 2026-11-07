@@ -5,7 +5,7 @@
 #
 # Usage: scripts/run-code-compilation-measurements.sh <path-to-jdk-28> <machine-id>
 #
-# Runs about 15 minutes. Close other applications first: the script measures
+# Runs about 30 minutes. Close other applications first: the script measures
 # start and warmup times, and every background load shows up in them.
 # environment.txt records the load average at start and end.
 
@@ -75,13 +75,15 @@ create_cache compile-t5.aot AotCompile 5
 create_cache compile-t60.aot AotCompile 60
 JDK_AOT_VM_OPTIONS="-XX:+UnlockDiagnosticVMOptions -XX:-UseAOTCodeCounters" \
   create_cache compile-nocounters.aot AotCompile 20
+# Loaded classes only: without AOTClassLinking the JVM records no profiles and no code.
+create_cache compile-nolinking.aot AotCompile 20 -XX:-AOTClassLinking
 create_cache aottest-code.aot AotTest ""
 create_cache aottest-nocode.aot AotTest "" "${no_aot_code[@]}"
 
 {
   echo
   echo "Further caches, size in bytes:"
-  for cache in compile-t5 compile-t60 compile-nocounters aottest-code aottest-nocode; do
+  for cache in compile-t5 compile-t60 compile-nocounters compile-nolinking aottest-code aottest-nocode; do
     echo "$cache.aot: $(wc -c < "$work/$cache.aot" | tr -d ' ') bytes"
   done
 } | tee -a "$out/cache-creation.txt"
@@ -96,15 +98,9 @@ measure "$out/aottest.csv" 50 \
   "code=$java -XX:AOTCache=$work/aottest-code.aot $aottest" \
   | tee "$out/aottest-summary.txt"
 
-echo "== AotCompile, 30 runs of 20 iterations per variant"
-measure "$out/compile-20.csv" 30 --blocks 1-1,2-5,6-10,11-20,1-20 \
-  "none=$java $compile 20" \
-  "nocode=$java -XX:AOTCache=$work/compile-nocode.aot $compile 20" \
-  "code=$java -XX:AOTCache=$work/compile-code.aot $compile 20" \
-  | tee "$out/compile-20-summary.txt"
-
-echo "== AotCompile, 10 runs of 100 iterations per variant"
-measure "$out/compile-100.csv" 10 --blocks 1-1,2-5,6-10,11-20,21-40,41-60,61-80,81-100 \
+echo "== AotCompile, 30 runs of 100 iterations per variant"
+measure "$out/compile-100.csv" 30 \
+  --blocks 1-1,2-5,6-10,11-20,21-30,31-40,41-60,61-80,81-100,1-20 \
   "none=$java $compile 100" \
   "nocode=$java -XX:AOTCache=$work/compile-nocode.aot $compile 100" \
   "code=$java -XX:AOTCache=$work/compile-code.aot $compile 100" \
@@ -119,6 +115,16 @@ measure "$out/compile-training.csv" 8 --blocks 1-1,2-5,6-10,11-20,21-30,31-40,41
   "nocounters=$java -XX:AOTCache=$work/compile-nocounters.aot $compile 60" \
   | tee "$out/compile-training-summary.txt"
 
+echo "== AotCompile, where the gap to no cache comes from, 15 runs of 100 iterations"
+# noreplay: the cache without AOT code, but without reading the method profiles.
+measure "$out/profiles.csv" 15 \
+  --blocks 1-1,2-5,6-10,11-20,21-30,31-40,41-60,61-80,81-100 \
+  "none=$java $compile 100" \
+  "nocode=$java -XX:AOTCache=$work/compile-nocode.aot $compile 100" \
+  "noreplay=$java -XX:+UnlockDiagnosticVMOptions -XX:-AOTReplayTraining -XX:AOTCache=$work/compile-nocode.aot $compile 100" \
+  "nolinking=$java -XX:AOTCache=$work/compile-nolinking.aot $compile 100" \
+  | tee "$out/profiles-summary.txt"
+
 echo "== PrintCompilation logs, 40 iterations"
 for variant in none nocode code; do
   cache=()
@@ -128,6 +134,13 @@ for variant in none nocode code; do
     > "$out/compilation-$variant.txt"
   gzip -9 -c "$work/compilation-$variant.log" > "$out/compilation-$variant.log.gz"
 done
+
+echo "== PrintCompilation log of the cache without counters, 60 iterations"
+"$java" -XX:+PrintCompilation -XX:AOTCache="$work/compile-nocounters.aot" $compile 60 \
+  > "$work/compilation-nocounters.log" 2>&1
+python3 -I scripts/analyze-compilation.py "$work/compilation-nocounters.log" \
+  > "$out/compilation-nocounters.txt"
+gzip -9 -c "$work/compilation-nocounters.log" > "$out/compilation-nocounters.log.gz"
 
 echo "== Cache trained with G1, started with other collectors"
 {

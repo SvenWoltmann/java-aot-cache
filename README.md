@@ -50,15 +50,15 @@ java -XX:+UnlockDiagnosticVMOptions -XX:-AOTCodeCaching \
 
 ## Measurements
 
-`scripts/run-code-compilation-measurements.sh <path-to-jdk-28> <machine-id>` reproduces all measurements of the code-compilation article in about 15 minutes and writes them to `results/code-compilation/<machine-id>/`:
+`scripts/run-code-compilation-measurements.sh <path-to-jdk-28> <machine-id>` reproduces all measurements of the code-compilation article in about 30 minutes and writes them to `results/code-compilation/<machine-id>/`:
 
 * `environment.txt` – date, CPU and JDK build
 * `cache-creation.txt` – duration of training run plus cache creation, and the sizes of all caches
 * `aottest.csv`, `aottest-summary.txt` – 50 starts of `AotTest` each without a cache, with a cache without AOT code, and with a cache with AOT code
-* `compile-20.csv`, `compile-20-summary.txt` – 30 runs of `AotCompile` with 20 rounds each, same three variants
-* `compile-100.csv`, `compile-100-summary.txt` – 10 runs with 100 rounds each, to see where the variants meet
+* `compile-100.csv`, `compile-100-summary.txt` – 30 runs of `AotCompile` with 100 rounds each, same three variants: the first rounds show the head start of the AOT code, the later ones where the variants meet
 * `compile-training.csv`, `compile-training-summary.txt` – caches from training runs of 5, 20 and 60 rounds, and a cache whose AOT code has no invocation counters (`-XX:-UseAOTCodeCounters` during cache creation), 8 runs with 60 rounds each
-* `compilation-<variant>.txt`, `compilation-<variant>.log.gz` – `-XX:+PrintCompilation` logs of 40 rounds and their evaluation by `scripts/analyze-compilation.py`
+* `profiles.csv`, `profiles-summary.txt` – where the gap to the run without a cache after 20 rounds comes from, 15 runs with 100 rounds each: without a cache, with the cache without AOT code, with the same cache but `-XX:-AOTReplayTraining` (the JVM ignores the method profiles), and with a cache created with `-XX:-AOTClassLinking` (loaded classes only, no linking, no profiles, no code)
+* `compilation-<variant>.txt`, `compilation-<variant>.log.gz` – `-XX:+PrintCompilation` logs of 40 rounds and their evaluation by `scripts/analyze-compilation.py`; `compilation-nocounters.*` is a run of 60 rounds with the cache whose AOT code has no counters
 * `gc-mismatch.txt` – what happens when the cache was created with G1 and the application starts with the Serial, Parallel or Z garbage collector
 
 `scripts/measure.py` starts the variants alternately, measures the wall time of each `java` process and collects the duration of each round. The summaries give the first quartile, the median and the third quartile.

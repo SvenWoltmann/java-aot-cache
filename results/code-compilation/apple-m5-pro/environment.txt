@@ -8,3 +8,8 @@ OpenJDK 64-Bit Server VM (build 28-ea+20-1588, mixed mode, sharing)
 
 Load at start: 22:16  up 36 days, 16:01, 1 user, load averages: 2.13 3.50 3.59
 Load at end: 22:28  up 36 days, 16:13, 1 user, load averages: 5.76 5.98 5.35
+
+compile-100.csv: measured on 2026-11-07, 10:39-10:50Z, with the caches of 2026-11-05.
+Load at start: 2.13 (1 min), 3.45 (5 min).
+profiles.csv, compilation-nocounters.*, compile-nolinking.aot: 2026-11-07, 10:52-11:00Z.
+Load at start: 2.25 (1 min), 3.66 (5 min).
