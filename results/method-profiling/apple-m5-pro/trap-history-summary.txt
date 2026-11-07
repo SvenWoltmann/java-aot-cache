@@ -1,0 +1,57 @@
+results/method-profiling/apple-m5-pro/trap-history.csv: 15 runs per variant, quartiles Q1 / median / Q3
+
+none: java28 -cp target/method-profiling/28/AotCompile.jar AotCompile 100
+  wall time [ms]:      7024.2 / 7060.2 / 7091.8
+  iteration 1 [ms]:    523.0 / 529.0 / 532.0
+  median per iteration [ms]: 529 214 153 129 105 100 93 85 80 76 76 72 73 68 73 80 80 80 72 63 63 69 68 63 63 67 68 63 61 61 61 61 62 61 63 63 62 62 60 58 59 59 61 60 57 57 56 57 56 58 59 59 58 59 58 57 57 57 55 56 57 58 56 58 57 57 57 55 56 55 55 55 55 56 55 55 57 56 56 56 56 56 55 55 57 56 55 56 56 56 55 55 55 54 54 55 55 56 56 54
+  iterations 1-1, mean per iteration [ms]: 523.0 / 529.0 / 532.0
+  iterations 2-5, mean per iteration [ms]: 149.2 / 150.8 / 152.0
+  iterations 6-10, mean per iteration [ms]: 86.4 / 87.2 / 88.6
+  iterations 11-20, mean per iteration [ms]: 72.7 / 73.7 / 74.0
+  iterations 21-30, mean per iteration [ms]: 64.3 / 64.9 / 65.0
+  iterations 31-40, mean per iteration [ms]: 61.3 / 61.5 / 61.7
+  iterations 41-60, mean per iteration [ms]: 57.4 / 58.1 / 58.5
+  iterations 61-80, mean per iteration [ms]: 56.0 / 56.4 / 56.8
+  iterations 81-100, mean per iteration [ms]: 55.1 / 55.7 / 56.1
+
+noreplay: java28 -XX:+UnlockDiagnosticVMOptions -XX:-AOTReplayTraining -XX:AOTCache=target/method-profiling/28/compile-t20.aot -cp target/method-profiling/28/AotCompile.jar AotCompile 100
+  wall time [ms]:      6944.3 / 6968.9 / 7005.4
+  iteration 1 [ms]:    415.0 / 416.0 / 421.0
+  median per iteration [ms]: 416 211 156 125 105 102 92 85 81 78 77 72 74 67 73 80 80 77 67 64 64 69 67 64 64 68 67 65 62 60 62 62 63 62 64 63 63 62 60 59 60 59 61 60 58 58 57 58 57 58 59 61 58 59 58 58 58 57 55 57 57 57 57 58 57 59 57 56 56 56 56 55 56 56 55 57 57 57 56 58 56 56 56 55 57 57 55 57 56 55 55 55 55 55 55 56 56 56 56 56
+  iterations 1-1, mean per iteration [ms]: 415.0 / 416.0 / 421.0
+  iterations 2-5, mean per iteration [ms]: 148.0 / 149.2 / 150.8
+  iterations 6-10, mean per iteration [ms]: 87.0 / 87.8 / 88.4
+  iterations 11-20, mean per iteration [ms]: 72.4 / 73.0 / 73.4
+  iterations 21-30, mean per iteration [ms]: 64.7 / 64.7 / 65.5
+  iterations 31-40, mean per iteration [ms]: 61.7 / 62.0 / 62.3
+  iterations 41-60, mean per iteration [ms]: 58.1 / 58.5 / 58.6
+  iterations 61-80, mean per iteration [ms]: 56.4 / 56.8 / 57.1
+  iterations 81-100, mean per iteration [ms]: 55.7 / 56.0 / 56.5
+
+training20: java28 -XX:AOTCache=target/method-profiling/28/compile-t20.aot -cp target/method-profiling/28/AotCompile.jar AotCompile 100
+  wall time [ms]:      7043.6 / 7074.0 / 7088.7
+  iteration 1 [ms]:    478.0 / 483.0 / 487.0
+  median per iteration [ms]: 483 163 145 118 107 92 90 82 78 73 71 70 69 70 69 66 60 60 60 60 71 63 63 65 71 64 64 73 66 67 66 65 63 64 64 64 63 62 64 63 69 65 63 63 65 63 62 60 61 59 61 63 61 61 60 60 60 61 63 60 58 59 62 61 59 59 59 60 58 58 58 57 58 58 57 56 58 59 57 56 57 59 60 58 58 59 59 58 57 58 57 57 57 57 58 57 58 57 56 57
+  iterations 1-1, mean per iteration [ms]: 478.0 / 483.0 / 487.0
+  iterations 2-5, mean per iteration [ms]: 130.8 / 132.8 / 135.2
+  iterations 6-10, mean per iteration [ms]: 81.2 / 81.6 / 85.6
+  iterations 11-20, mean per iteration [ms]: 65.5 / 65.7 / 66.3
+  iterations 21-30, mean per iteration [ms]: 66.3 / 67.0 / 67.3
+  iterations 31-40, mean per iteration [ms]: 63.4 / 63.9 / 64.2
+  iterations 41-60, mean per iteration [ms]: 61.9 / 62.2 / 62.4
+  iterations 61-80, mean per iteration [ms]: 58.2 / 58.8 / 59.4
+  iterations 81-100, mean per iteration [ms]: 57.8 / 58.0 / 58.4
+
+training20-notraps: java28 -XX:AOTCache=target/method-profiling/28/compile-t20-notraps.aot -cp target/method-profiling/28/AotCompile.jar AotCompile 100
+  wall time [ms]:      7120.4 / 7146.1 / 7164.1
+  iteration 1 [ms]:    496.0 / 505.0 / 510.0
+  median per iteration [ms]: 505 174 153 119 104 90 85 83 74 68 68 64 71 71 69 69 69 62 61 60 72 65 62 63 67 64 67 73 65 64 67 68 63 63 63 64 64 62 62 63 69 66 64 64 64 64 62 61 62 61 61 64 63 61 60 62 63 62 64 61 60 60 63 62 60 60 60 61 59 58 59 59 59 57 58 58 58 59 58 59 58 59 59 59 60 60 58 58 58 58 58 58 58 59 58 58 58 58 59 58
+  iterations 1-1, mean per iteration [ms]: 496.0 / 505.0 / 510.0
+  iterations 2-5, mean per iteration [ms]: 135.8 / 137.5 / 139.5
+  iterations 6-10, mean per iteration [ms]: 79.2 / 79.8 / 81.4
+  iterations 11-20, mean per iteration [ms]: 65.9 / 66.4 / 66.8
+  iterations 21-30, mean per iteration [ms]: 66.0 / 66.5 / 67.1
+  iterations 31-40, mean per iteration [ms]: 63.8 / 63.8 / 64.1
+  iterations 41-60, mean per iteration [ms]: 62.8 / 63.1 / 63.3
+  iterations 61-80, mean per iteration [ms]: 59.4 / 59.6 / 60.0
+  iterations 81-100, mean per iteration [ms]: 58.3 / 58.8 / 59.0

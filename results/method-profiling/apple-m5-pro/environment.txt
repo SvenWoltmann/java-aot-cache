@@ -24,3 +24,5 @@ Follow-up, 2026-11-07T15:42Z, load at start: 16:42  up 38 days, 10:27, 1 user, l
 Follow-up, load at end: 16:50  up 38 days, 10:35, 1 user, load averages: 3.39 3.65 3.26
 Eager compilation, 2026-11-07T15:53Z, load at start: 16:53  up 38 days, 10:38, 1 user, load averages: 0.82 2.32 2.77
 Eager compilation, load at end: 17:04  up 38 days, 10:49, 1 user, load averages: 2.81 2.95 3.07
+Trap history, 2026-11-07T16:18Z, load at start: 17:18  up 38 days, 11:03, 1 user, load averages: 0.80 2.54 3.00
+Trap history, load at end: 17:25  up 38 days, 11:10, 1 user, load averages: 4.65 3.92 3.52
