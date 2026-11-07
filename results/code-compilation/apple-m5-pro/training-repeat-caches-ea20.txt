@@ -1,0 +1,10 @@
+Cache size in bytes
+t5a.aot: 65175552
+t20a.aot: 87212032
+t60a.aot: 101220352
+t5b.aot: 64208896
+t20b.aot: 87048192
+t60b.aot: 99483648
+t5c.aot: 65323008
+t20c.aot: 86704128
+t60c.aot: 100089856

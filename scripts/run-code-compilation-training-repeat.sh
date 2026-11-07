@@ -5,7 +5,8 @@
 # (5, 20 and 60 iterations), to tell the effect of the training length from
 # the variation between two caches of the same training length.
 #
-# Usage: scripts/run-code-compilation-training-repeat.sh <path-to-jdk-28> <machine-id>
+# Usage: scripts/run-code-compilation-training-repeat.sh <path-to-jdk-28> <machine-id> <build-name>
+# Example: scripts/run-code-compilation-training-repeat.sh ~/jdk-28-ea23 apple-m5-pro ea23
 #
 # Runs about 10 minutes. Close other applications first.
 
@@ -13,6 +14,7 @@ set -euo pipefail
 
 jdk=$1
 machine_id=$2
+build=$3
 export PATH="$jdk/bin:$PATH"
 java=java
 out="results/code-compilation/$machine_id"
@@ -29,7 +31,7 @@ mkdir -p "$work" "$out"
   echo "Date: $(date -u +%Y-%m-%dT%H:%MZ)"
   "$java" -version 2>&1 | sed -n 2p
   echo "Load at start: $(uptime)"
-} > "$out/training-repeat-environment.txt"
+} > "$out/training-repeat-environment-$build.txt"
 
 echo "== Creating three caches per training length"
 {
@@ -42,7 +44,7 @@ echo "== Creating three caches per training length"
       echo "t$training$repetition.aot: $(wc -c < "$cache" | tr -d ' ')"
     done
   done
-} | tee "$out/training-repeat-caches.txt"
+} | tee "$out/training-repeat-caches-$build.txt"
 
 compile="-cp $work/AotCompile.jar AotCompile 60"
 variants=()
@@ -53,9 +55,9 @@ for training in 5 20 60; do
 done
 
 echo "== AotCompile, 8 runs of 60 iterations per cache"
-python3 -I scripts/measure.py "$out/compile-training-repeat.csv" 8 \
+python3 -I scripts/measure.py "$out/compile-training-repeat-$build.csv" 8 \
   --blocks 1-1,2-5,6-10,11-20,21-30,31-40,41-50,51-60 "${variants[@]}" \
-  | tee "$out/compile-training-repeat-summary.txt"
+  | tee "$out/compile-training-repeat-summary-$build.txt"
 
-echo "Load at end: $(uptime)" >> "$out/training-repeat-environment.txt"
+echo "Load at end: $(uptime)" >> "$out/training-repeat-environment-$build.txt"
 echo "Done: $out"
