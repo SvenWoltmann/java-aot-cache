@@ -1,9 +1,9 @@
 log                              pauses  pause sum  before GC  committed
                                               [ms]       [MB]       [MB]
-gc-java28-none.log                   52       79.2        314        520
-gc-java28-noreplay.log               39       65.4        448        744
-gc-java28-training100.log            54       80.7        312        512
-gc-java28-training20.log             34       60.8        608       1000
-gc-java25-none.log                   22       64.7        882       1488
-gc-java25-noreplay.log               22       62.4        881       1488
-gc-java25-training20.log             23       64.0        886       1488
+gc-java28-none.log                   35       63.6        552        904
+gc-java28-noreplay.log               41       66.0        422        696
+gc-java28-training100.log            51       76.9        344        560
+gc-java28-training20.log             31       56.3        644       1056
+gc-java25-none.log                   22       61.8        812       1488
+gc-java25-noreplay.log               25       51.2        739       1240
+gc-java25-training20.log             23       63.9        887       1488

@@ -1,106 +1,107 @@
 Methods by the level of the code they end with:
-  level 0: 246   level 1: 381   level 2: 2196   level 3: 1009   level 4: 2522
+  level 0: 245   level 1: 374   level 2: 2190   level 3: 1022   level 4: 2511
 
 Compile queue and compiler-thread time per level and window after JVM start
   (queued tasks, of which queued without an invocation (reason must_be_compiled);
   median / 90th percentile of the queue wait in ms; sum of compilation times in ms):
   level 1:
-    0.00-0.25 s    queued   283 (  215)   wait   123.0 /   585.0   compiling       32
-    0.25-0.50 s    queued    84 (   41)   wait   266.0 /   372.0   compiling       12
-    0.50-1.00 s    queued    15 (    0)   wait     0.0 /   144.0   compiling        0
-    1.00-2.00 s    queued     4 (    0)   wait     0.0 /     1.0   compiling        0
-    2.00 s-end     queued    38 (    0)   wait     0.0 /     1.0   compiling        1
+    0.00-0.25 s    queued   286 (  209)   wait    81.0 /   550.0   compiling       39
+    0.25-0.50 s    queued    88 (   39)   wait   254.0 /   367.0   compiling        5
+    0.50-1.00 s    queued    16 (    0)   wait     1.0 /   141.0   compiling        1
+    1.00-2.00 s    queued     3 (    0)   wait     0.0 /     0.0   compiling        0
+    2.00 s-end     queued    38 (    0)   wait     0.0 /     0.0   compiling        1
   level 2:
-    0.00-0.25 s    queued  3499 ( 3151)   wait    80.0 /   515.0   compiling     1007
-    0.25-0.50 s    queued  1464 ( 1387)   wait   166.0 /   285.0   compiling      770
-    0.50-1.00 s    queued   212 (    0)   wait     0.0 /     1.0   compiling       45
-    1.00-2.00 s    queued    56 (    0)   wait     0.0 /     0.0   compiling       12
-    2.00 s-end     queued    14 (    3)   wait     0.0 /     0.0   compiling        6
+    0.00-0.25 s    queued  3468 ( 3073)   wait    69.0 /   508.0   compiling      972
+    0.25-0.50 s    queued  1492 ( 1408)   wait   163.0 /   285.0   compiling      793
+    0.50-1.00 s    queued   211 (    0)   wait     0.0 /     0.0   compiling       50
+    1.00-2.00 s    queued    51 (    0)   wait     0.0 /     0.0   compiling       13
+    2.00 s-end     queued    16 (    4)   wait     0.0 /     0.0   compiling        7
   level 3:
-    0.00-0.25 s    queued     5 (    0)   wait   478.0 /   630.0   compiling        2
-    0.25-0.50 s    queued     8 (    0)   wait   221.0 /   290.0   compiling        3
-    0.50-1.00 s    queued    99 (    0)   wait     0.0 /    72.0   compiling       26
-    1.00-2.00 s    queued   127 (    0)   wait     0.0 /     0.0   compiling       17
-    2.00 s-end     queued  1466 (    0)   wait     0.0 /    11.0   compiling      497
+    0.00-0.25 s    queued     5 (    0)   wait   456.0 /   627.0   compiling        2
+    0.25-0.50 s    queued     9 (    0)   wait   268.0 /   326.0   compiling        1
+    0.50-1.00 s    queued   103 (    0)   wait     0.0 /    59.0   compiling       14
+    1.00-2.00 s    queued   131 (    0)   wait     0.0 /     0.0   compiling       24
+    2.00 s-end     queued  1469 (    0)   wait     0.0 /    12.0   compiling      506
   level 4:
-    0.00-0.25 s    queued   288 (  121)   wait     0.0 /     4.0   compiling      643
-    0.25-0.50 s    queued   361 (  216)   wait   282.0 /   564.0   compiling     3997
-    0.50-1.00 s    queued   747 (    0)   wait   334.0 /   476.0   compiling     3394
-    1.00-2.00 s    queued   422 (    4)   wait   129.0 /   299.0   compiling     2526
-    2.00 s-end     queued   729 (    0)   wait     0.0 /     2.0   compiling     4202
+    0.00-0.25 s    queued   288 (  136)   wait     0.0 /     4.0   compiling      707
+    0.25-0.50 s    queued   370 (  221)   wait   325.0 /   597.0   compiling     4225
+    0.50-1.00 s    queued   723 (    0)   wait   360.0 /   477.0   compiling     3079
+    1.00-2.00 s    queued   429 (    0)   wait    85.0 /   262.0   compiling     2040
+    2.00 s-end     queued   728 (    0)   wait     0.0 /     2.0   compiling     4414
 
-All C2 compilations (level 4, no OSR): 2547 compilations
-  with trap history in the profile:          575
-  with decompiles recorded in the profile:    353
-  speculations dropped because of traps:      856
-    class_check                             409
-    unstable_if                             367
-    predicate                                56
-    array_check                               9
-    null_check                                5
+All C2 compilations (level 4, no OSR): 2537 compilations
+  with trap history in the profile:          557
+  with decompiles recorded in the profile:    351
+  speculations dropped because of traps:     1222
+    unstable_if                             707
+    class_check                             436
+    predicate                                55
+    array_check                               7
     loop_limit_check                          5
+    null_check                                5
     profile_predicate                         4
-    intrinsic                                 1
-  code size (nmsize), sum [bytes]:          6914544
-  inlined bytecode, sum [bytes]:            1339329
+    intrinsic                                 3
+  code size (nmsize), sum [bytes]:          6120280
+  inlined bytecode, sum [bytes]:            1396113
   virtual call sites by type profile (sites; profiled calls):
-    receiver types cover >= 90 % of the calls      6355     131762859
-    receiver types cover < 90 % of the calls       4580    2395750600
+    receiver types cover >= 90 % of the calls      6558     138861413
+    receiver types cover < 90 % of the calls       4700    2602780550
     no receiver type in the profile                   0             0
-    never executed                                  691             0
+    never executed                                  765             0
   inlining decisions:
-    inline: inline (hot)                                      58097
-    fail: virtual call                                         5707
-    inline: force inline by annotation                         4542
-    inline: accessor                                           3813
-    fail: too big                                              1880
-    fail: low call site frequency                              1443
-    fail: already compiled into a medium method                1179
-    fail: already compiled into a big method                    650
-    fail: hot method too big                                    632
-    fail: NodeCountInliningCutoff                               340
-    fail: native method                                         270
-    fail: recursive inlining is too deep                        196
-    fail: size > DesiredMethodLimit                              98
-    fail: never executed                                         49
-
-Last C2 compilation per method: 2524 compilations
-  with trap history in the profile:          558
-  with decompiles recorded in the profile:    336
-  speculations dropped because of traps:      839
-    class_check                             398
-    unstable_if                             365
-    predicate                                53
-    array_check                               9
-    null_check                                5
-    loop_limit_check                          5
-    profile_predicate                         3
-    intrinsic                                 1
-  code size (nmsize), sum [bytes]:          6759768
-  inlined bytecode, sum [bytes]:            1308818
-  virtual call sites by type profile (sites; profiled calls):
-    receiver types cover >= 90 % of the calls      6141     127463205
-    receiver types cover < 90 % of the calls       4477    2358998437
-    no receiver type in the profile                   0             0
-    never executed                                  676             0
-  inlining decisions:
-    inline: inline (hot)                                      56835
-    fail: virtual call                                         5555
-    inline: force inline by annotation                         4399
-    inline: accessor                                           3711
-    fail: too big                                              1838
+    inline: inline (hot)                                      60028
+    fail: virtual call                                         5889
+    inline: force inline by annotation                         4535
+    inline: accessor                                           3826
+    fail: too big                                              1971
     fail: low call site frequency                              1391
-    fail: already compiled into a medium method                1127
-    fail: already compiled into a big method                    640
-    fail: hot method too big                                    618
-    fail: NodeCountInliningCutoff                               312
-    fail: native method                                         258
-    fail: recursive inlining is too deep                        195
-    fail: size > DesiredMethodLimit                              93
-    fail: never executed                                         49
+    fail: already compiled into a medium method                1085
+    fail: hot method too big                                    693
+    fail: already compiled into a big method                    611
+    fail: NodeCountInliningCutoff                               327
+    fail: native method                                         284
+    fail: recursive inlining is too deep                        210
+    fail: size > DesiredMethodLimit                             154
+    fail: never executed                                         42
+
+Last C2 compilation per method: 2514 compilations
+  with trap history in the profile:          543
+  with decompiles recorded in the profile:    339
+  speculations dropped because of traps:     1202
+    unstable_if                             705
+    class_check                             424
+    predicate                                52
+    array_check                               7
+    profile_predicate                         4
+    null_check                                4
+    intrinsic                                 3
+    loop_limit_check                          3
+  code size (nmsize), sum [bytes]:          5985864
+  inlined bytecode, sum [bytes]:            1365408
+  virtual call sites by type profile (sites; profiled calls):
+    receiver types cover >= 90 % of the calls      6331     133416267
+    receiver types cover < 90 % of the calls       4604    2565858011
+    no receiver type in the profile                   0             0
+    never executed                                  743             0
+  inlining decisions:
+    inline: inline (hot)                                      58752
+    fail: virtual call                                         5733
+    inline: force inline by annotation                         4389
+    inline: accessor                                           3726
+    fail: too big                                              1935
+    fail: low call site frequency                              1342
+    fail: already compiled into a medium method                1037
+    fail: hot method too big                                    677
+    fail: already compiled into a big method                    599
+    fail: NodeCountInliningCutoff                               296
+    fail: native method                                         271
+    fail: recursive inlining is too deep                        209
+    fail: size > DesiredMethodLimit                             151
+    fail: never executed                                         42
 
 Uncommon traps hit by C2 code at runtime, by reason:
-  class_check                              36
+  class_check                              30
   profile_predicate                         7
-  bimorphic                                 6
-  total                                    49
+  bimorphic                                 3
+  unstable_if                               2
+  total                                    42

@@ -3,9 +3,9 @@ Java 28, one run of 10 iterations; only the C2 decisions ("hot" or "failed")
 (-XX:+PrintCompilation -XX:+PrintInlining)
 
 ### noreplay
-@ 2 AotLambda$$Lambda/0x800000004::applyAsInt (13 bytes) inline (hot) callee changed to AotLambda$Steps::step (8 bytes) \-> TypeProfile (6623 counts) = AotLambda$$Lambda+0x800000004
-@ 2 AotLambda$$Lambda/0x800000004::applyAsInt (13 bytes) inline (hot) callee changed to AotLambda$Steps::step (8 bytes) \-> TypeProfile (102071 counts) = AotLambda$$Lambda+0x800000004
-@ 2 AotLambda$$Lambda/0x800000004::applyAsInt (13 bytes) inline (hot) callee changed to AotLambda$Steps::step (8 bytes) \-> TypeProfile (823655 counts) = AotLambda$$Lambda+0x800000004
+@ 2 AotLambda$$Lambda/0x800000004::applyAsInt (13 bytes) inline (hot) callee changed to AotLambda$Steps::step (8 bytes) \-> TypeProfile (6605 counts) = AotLambda$$Lambda+0x800000004
+@ 2 AotLambda$$Lambda/0x800000004::applyAsInt (13 bytes) inline (hot) callee changed to AotLambda$Steps::step (8 bytes) \-> TypeProfile (87626 counts) = AotLambda$$Lambda+0x800000004
+@ 2 AotLambda$$Lambda/0x800000004::applyAsInt (13 bytes) inline (hot) callee changed to AotLambda$Steps::step (8 bytes) \-> TypeProfile (893699 counts) = AotLambda$$Lambda+0x800000004
 
 ### profiles
 @ 2 AotLambda$$Lambda/0x800000004::applyAsInt (13 bytes) failed to inline: never executed

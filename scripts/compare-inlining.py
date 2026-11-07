@@ -9,7 +9,9 @@ decision with the reason. A call site is the same in both logs if path, index
 and callee match.
 
 It prints how many call sites C2 inlined in A but not in B, grouped by B's
-reason, and the other way round. With method substrings, it also lists these
+reason, and the other way round, and how many of them lead through a lambda,
+method handle or string concatenation class (generated at run time, so the
+JVM does not keep their profile rows in the AOT cache). With method substrings, it also lists these
 call sites for the compiled methods whose name contains one of them.
 """
 
@@ -19,6 +21,7 @@ import re
 import sys
 
 ATTRIBUTE = re.compile(r"(\w+)='([^']*)'")
+GENERATED = re.compile(r"\$\$Lambda|LambdaForm|DirectMethodHandle|\$Holder|StringConcat|Invokers|\$Species_")
 
 
 def attributes(line):
@@ -88,17 +91,22 @@ def main():
 
     for first, second, name_first, name_second in ((a, b, "A", "B"), (b, a, "B", "A")):
         reasons = collections.Counter()
+        generated = 0
         examples = collections.defaultdict(list)
         for root in common:
             for site, (decision, reason, count, callee) in first[root].items():
                 other = second[root].get(site)
                 if decision == "inline" and other and other[0] == "fail":
                     reasons[other[1]] += 1
+                    path, _, callee_name = site
+                    if GENERATED.search(callee_name) or any(GENERATED.search(p) for p in path[1:]):
+                        generated += 1
                     examples[root].append((site, reason, other, count))
         print(f"\nCall sites inlined in {name_first} but not in {name_second},"
               f" by {name_second}'s reason ({sum(reasons.values())} in total):")
         for reason, n in reasons.most_common(12):
             print(f"  {n:6d}  {reason}")
+        print(f"  of which through lambda, method handle or string concatenation classes: {generated}")
         if filters:
             for root, items in examples.items():
                 if any(f in root for f in filters):

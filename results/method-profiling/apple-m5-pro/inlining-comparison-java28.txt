@@ -1,0 +1,25 @@
+A: target/method-profiling/logcompilation-noreplay.xml
+B: target/method-profiling/logcompilation-training20.xml
+Methods compiled by C2 in both: 2238 (only A: 323, only B: 276)
+
+Call sites inlined in A but not in B, by B's reason (342 in total):
+     154  low call site frequency
+      47  already compiled into a big method
+      44  NodeCountInliningCutoff
+      33  virtual call
+      30  already compiled into a medium method
+      13  call site not reached
+      10  too big
+       9  size > DesiredMethodLimit
+       2  never executed
+  of which through lambda, method handle or string concatenation classes: 157
+
+Call sites inlined in B but not in A, by A's reason (324 in total):
+     146  too big
+      61  already compiled into a big method
+      48  low call site frequency
+      41  NodeCountInliningCutoff
+      23  already compiled into a medium method
+       3  virtual call
+       2  size > DesiredMethodLimit
+  of which through lambda, method handle or string concatenation classes: 1

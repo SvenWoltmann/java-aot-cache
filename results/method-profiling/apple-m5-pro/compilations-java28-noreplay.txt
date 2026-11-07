@@ -1,115 +1,115 @@
 Compilations per iteration and level (an event belongs to the iteration it happened in)
   iterations    level 1  level 2  level 3  level 4      OSR
-  1                 244        2     3199      674        2
-  2                  12        2      706      251        2
-  3                  20        2      200      200        2
-  4-5                 4        0      211      298        1
-  6-10               12        0      366      319        2
-  11-15              10        0      148      146        0
-  16-20               7        0      126      129        2
-  21-25               6        0       50       92        1
-  26-30               6        0       46      135        3
-  31-40               4        0       74      168        1
-  41-50              10        0       59       98        0
-  51-60               0        0       64       61        0
-  61-70              22        0       73       30        0
-  71-80               0        0       30       31        0
-  81-90               1        0       64       24        0
-  91-100              1        0       12       17        0
+  1                 244        3     3209      657        2
+  2                  13        2      708      272        4
+  3                  19        4      232      226        1
+  4-5                 4        1      195      288        2
+  6-10               12        0      371      310        1
+  11-15              10        0      147      141        1
+  16-20               7        0      123      118        2
+  21-25               6        0       52      103        1
+  26-30               6        0       45      127        2
+  31-40               4        0       74      185        1
+  41-50              10        0       58       84        0
+  51-60               0        0       68       64        0
+  61-70              22        0       72       30        0
+  71-80               0        0       24       29        0
+  81-90               1        0       61       25        0
+  91-100              1        0       15       20        0
   after last          0        0        0        0        0
 
 Accumulated compiler times
 ----------------------------------------------------------
-  Total compilation time   :  14.378 s
-    Standard compilation   :  14.313 s, Average : 0.002 s
+  Total compilation time   :  14.481 s
+    Standard compilation   :  14.418 s, Average : 0.002 s
     Bailed out compilation :   0.000 s, Average : 0.000 s
-    On stack replacement   :   0.065 s, Average : 0.004 s
+    On stack replacement   :   0.063 s, Average : 0.004 s
     Invalidated            :   0.000 s, Average : 0.000 s
 
-    C1 Compile Time:        0.917 s
+    C1 Compile Time:        0.918 s
        Setup time:            0.007 s
-       Build HIR:             0.384 s
+       Build HIR:             0.386 s
          Parse:                 0.312 s
          Optimize blocks:       0.000 s
-         GVN:                   0.029 s
+         GVN:                   0.030 s
          Null checks elim:      0.020 s
          Range checks elim:     0.002 s
          Other:                 0.022 s
-       Emit LIR:              0.294 s
-         LIR Gen:               0.054 s
-         Linear Scan:           0.238 s
+       Emit LIR:              0.292 s
+         LIR Gen:               0.056 s
+         Linear Scan:           0.234 s
          Other:                 0.002 s
-       Code Emission:         0.103 s
-       Code Installation:     0.107 s
-       Other:                 0.022 s
+       Code Emission:         0.105 s
+       Code Installation:     0.105 s
+       Other:                 0.024 s
 
-    C2 Compile Time:       13.429 s
-       Parse:                 1.670 s
-       Optimize:              6.694 s
-         Escape Analysis:       0.591 s
-           Conn Graph:            0.352 s
-           Macro Eliminate:       0.206 s
-         GVN 1:                 0.795 s
+    C2 Compile Time:       13.530 s
+       Parse:                 1.747 s
+       Optimize:              6.965 s
+         Escape Analysis:       0.616 s
+           Conn Graph:            0.371 s
+           Macro Eliminate:       0.234 s
+         GVN 1:                 0.850 s
          Incremental Inline:    0.040 s
            IdealLoop:             0.000 s
-          (IGVN:                  0.043 s)
-          (Inline:                0.007 s)
-          (Prune Useless:         0.037 s)
+          (IGVN:                  0.045 s)
+          (Inline:                0.006 s)
+          (Prune Useless:         0.039 s)
            Other:                 0.040 s
          Vector:                0.000 s
            Box elimination:     0.000 s
              IGVN:              0.000 s
              Prune Useless:     0.000 s
-         Renumber Live:         0.120 s
-         IdealLoop:             2.611 s
+         Renumber Live:         0.131 s
+         IdealLoop:             2.687 s
            ReachabilityFence:   0.001 s
              Optimize:          0.000 s
              Expand:            0.000 s
            AutoVectorize:       0.004 s
          IdealLoop Verify:      0.000 s
-         Cond Const Prop:       0.089 s
-         GVN 2:                 0.107 s
-         Macro Expand:          0.211 s
-         Barrier Expand:        0.041 s
-         Graph Reshape:         0.076 s
-         Other:                 2.012 s
+         Cond Const Prop:       0.094 s
+         GVN 2:                 0.115 s
+         Macro Expand:          0.234 s
+         Barrier Expand:        0.044 s
+         Graph Reshape:         0.082 s
+         Other:                 2.072 s
        Matcher:                    1.260 s
          Post Selection Cleanup:   0.053 s
-       Scheduler:                  0.628 s
-       Regalloc:              2.398 s
+       Scheduler:                  0.576 s
+       Regalloc:              2.209 s
          Ctor Chaitin:          0.002 s
-         Build IFG (virt):      0.057 s
-         Build IFG (phys):      0.454 s
-         Compute Liveness:      0.550 s
-         Regalloc Split:        0.411 s
-         Postalloc Copy Rem:    0.310 s
+         Build IFG (virt):      0.056 s
+         Build IFG (phys):      0.426 s
+         Compute Liveness:      0.547 s
+         Regalloc Split:        0.325 s
+         Postalloc Copy Rem:    0.248 s
          Merge multidefs:       0.038 s
          Fixup Spills:          0.000 s
          Compact:               0.004 s
-         Coalesce 1:            0.109 s
-         Coalesce 2:            0.019 s
-         Coalesce 3:            0.009 s
-         Cache LRG:             0.006 s
-         Simplify:              0.095 s
-         Select:                0.141 s
-         Other:                 0.192 s
+         Coalesce 1:            0.113 s
+         Coalesce 2:            0.018 s
+         Coalesce 3:            0.008 s
+         Cache LRG:             0.005 s
+         Simplify:              0.096 s
+         Select:                0.137 s
+         Other:                 0.188 s
        Block Ordering:        0.040 s
        Peephole:              0.000 s
-       Code Emission:           0.701 s
-         Insn Scheduling:       0.127 s
-         Shorten branches:      0.071 s
-         Build OOP maps:        0.115 s
-         Fill buffer:           0.134 s
-         Code Installation:     0.100 s
-         Other:                 0.155 s
+       Code Emission:           0.693 s
+         Insn Scheduling:       0.116 s
+         Shorten branches:      0.063 s
+         Build OOP maps:        0.118 s
+         Fill buffer:           0.142 s
+         Code Installation:     0.095 s
+         Other:                 0.160 s
 
-  Total compiled methods    :     8482 methods
-    Standard compilation    :     8466 methods
-    On stack replacement    :       16 methods
-  Total compiled bytecodes  :  2327379 bytes
-    Standard compilation    :  2315930 bytes
-    On stack replacement    :    11449 bytes
-  Average compilation speed :   161868 bytes/s
+  Total compiled methods    :     8519 methods
+    Standard compilation    :     8502 methods
+    On stack replacement    :       17 methods
+  Total compiled bytecodes  :  2398820 bytes
+    Standard compilation    :  2387902 bytes
+    On stack replacement    :    10918 bytes
+  Average compilation speed :   165649 bytes/s
 
-  nmethod code size         : 19723832 bytes
-  nmethod total size        : 29473760 bytes
+  nmethod code size         : 18617728 bytes
+  nmethod total size        : 28763432 bytes

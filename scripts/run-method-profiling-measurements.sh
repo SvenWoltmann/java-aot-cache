@@ -164,6 +164,8 @@ for variant in none noreplay training20; do
   python3 -I scripts/analyze-logcompilation.py "$work/logcompilation-$variant.xml" \
     > "$out/logcompilation-java28-$variant.txt"
 done
+python3 -I scripts/compare-inlining.py "$work/logcompilation-noreplay.xml" \
+  "$work/logcompilation-training20.xml" > "$out/inlining-comparison-java28.txt"
 
 echo "== JFR execution samples from second 4 to the end, 5 runs of 100 iterations per variant"
 for variant in noreplay training20; do

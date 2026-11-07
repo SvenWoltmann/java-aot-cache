@@ -1,10 +1,10 @@
 results/method-profiling/apple-m5-pro/hello-java28.csv: 30 runs per variant, quartiles Q1 / median / Q3
 
 none: java28 -cp target/method-profiling/28/HelloStreamWarmup.jar HelloStreamWarmup
-  wall time [ms]:      50.6 / 51.0 / 51.5
+  wall time [ms]:      50.0 / 50.3 / 50.5
 
 noreplay: java28 -XX:+UnlockDiagnosticVMOptions -XX:-AOTReplayTraining -XX:AOTCache=target/method-profiling/28/hello.aot -cp target/method-profiling/28/HelloStreamWarmup.jar HelloStreamWarmup
-  wall time [ms]:      44.6 / 45.0 / 45.7
+  wall time [ms]:      44.3 / 44.6 / 45.0
 
 profiles: java28 -XX:AOTCache=target/method-profiling/28/hello.aot -cp target/method-profiling/28/HelloStreamWarmup.jar HelloStreamWarmup
-  wall time [ms]:      40.2 / 40.5 / 41.5
+  wall time [ms]:      39.8 / 40.2 / 40.7

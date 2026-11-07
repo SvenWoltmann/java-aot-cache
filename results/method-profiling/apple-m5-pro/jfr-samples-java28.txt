@@ -1,66 +1,66 @@
-noreplay: 5 runs, samples per run 1964 1933 1946 1942 1980
-  executing frame: JIT compiled 98.9 %, Interpreted 1.1 %, Native 0.1 %
-  allocated by the main thread per run [MB]: 6378 6372 6334 6348 6319 (median 6348)
-training20: 5 runs, samples per run 1939 1962 1941 1925 1960
-  executing frame: JIT compiled 98.9 %, Interpreted 1.1 %, Native 0.0 %
-  allocated by the main thread per run [MB]: 6330 6306 6377 6394 6346 (median 6346)
+noreplay: 5 runs, samples per run 1871 1892 1876 1904 1904
+  executing frame: JIT compiled 98.9 %, Interpreted 1.0 %, Native 0.1 %
+  allocated by the main thread per run [MB]: 6519 6434 6565 6406 6460 (median 6460)
+training20: 5 runs, samples per run 1900 1878 1899 1866 1916
+  executing frame: JIT compiled 98.8 %, Interpreted 1.2 %, Native 0.0 %
+  allocated by the main thread per run [MB]: 6490 6468 6481 6581 6500 (median 6490)
 
 Leaf methods with the most samples, share of all samples in % per variant:
     noreplaytraining20  method
-        5.96      6.60  com.sun.tools.javac.code.Types$DefaultTypeVisitor.visit
-        5.28      4.83  com.sun.tools.javac.code.Type.hasTag
-        3.66      3.96  com.sun.tools.javac.code.Type.containsAny
-        3.37      3.52  com.sun.tools.javac.code.Type.equalsIgnoreMetadata
-        3.47      3.36  java.util.HashMap.putVal
-        3.27      3.25  com.sun.tools.javac.util.List.length
-        2.81      2.41  java.util.HashMap.getNode
-        2.43      2.61  com.sun.tools.javac.code.Type$ClassType.accept
-        2.30      2.23  com.sun.tools.javac.util.ListBuffer.appendList
-        1.88      1.73  com.sun.tools.javac.tree.TreeScanner.scan
-        1.67      1.53  com.sun.tools.javac.code.Types$UnaryVisitor.visit
-        1.59      1.49  com.sun.tools.javac.code.Type$StructuralTypeMapping.visitClassType
-        1.57      1.50  com.sun.tools.javac.code.Types$Subst.visitTypeVar
-        1.63      1.25  com.sun.tools.javac.util.List$2.next
-        1.31      1.39  java.util.EnumMap.unmaskNull
-        1.25      1.18  com.sun.tools.javac.util.Convert.chars2utf
-        1.05      1.11  com.sun.tools.javac.util.List.contains
-        0.89      0.99  com.sun.tools.javac.code.Type$UndetVar.substBounds
-        0.87      0.96  com.sun.tools.javac.code.Types$MapVisitor.visitType
-        0.90      0.85  com.sun.tools.javac.code.Type$ClassType.contains
-        0.92      0.83  com.sun.tools.javac.util.Iterators$CompoundIterator.hasNext
-        0.94      0.80  com.sun.tools.javac.comp.InferenceContext.filterVars
-        0.95      0.74  com.sun.tools.javac.code.Type.isErroneous
-        0.84      0.71  com.sun.tools.javac.code.Types$HashCodeVisitor.visitClassType
-        0.74      0.80  com.sun.tools.javac.code.Type.accept
-        0.75      0.73  java.lang.Iterable.forEach
-        0.73      0.74  com.sun.tools.javac.code.Types$Subst.visitClassType
-        0.68      0.73  com.sun.tools.javac.code.Scope$ScopeImpl.getIndex
-        0.57      0.76  com.sun.tools.javac.util.ListBuffer.append
-        0.67      0.67  com.sun.tools.javac.util.Convert.utf2chars
+        6.00      6.22  com.sun.tools.javac.code.Types$DefaultTypeVisitor.visit
+        4.68      4.70  com.sun.tools.javac.code.Type.hasTag
+        3.78      3.70  java.util.HashMap.putVal
+        3.62      3.69  com.sun.tools.javac.code.Type.containsAny
+        3.37      3.35  com.sun.tools.javac.code.Type.equalsIgnoreMetadata
+        3.09      3.19  com.sun.tools.javac.util.List.length
+        3.11      3.04  java.util.HashMap.getNode
+        2.61      2.79  com.sun.tools.javac.code.Type$ClassType.accept
+        2.12      2.08  com.sun.tools.javac.util.ListBuffer.appendList
+        1.89      1.78  com.sun.tools.javac.tree.TreeScanner.scan
+        1.66      1.83  com.sun.tools.javac.code.Types$UnaryVisitor.visit
+        1.64      1.52  com.sun.tools.javac.util.List$2.next
+        1.40      1.63  com.sun.tools.javac.code.Types$Subst.visitTypeVar
+        1.45      1.31  com.sun.tools.javac.code.Type$StructuralTypeMapping.visitClassType
+        1.15      1.32  com.sun.tools.javac.util.Convert.chars2utf
+        1.26      1.19  com.sun.tools.javac.util.List.contains
+        1.26      1.14  java.util.EnumMap.unmaskNull
+        0.94      0.94  com.sun.tools.javac.code.Type.isErroneous
+        0.85      1.03  com.sun.tools.javac.code.Type$ClassType.contains
+        1.03      0.84  com.sun.tools.javac.code.Types$MapVisitor.visitType
+        0.83      0.94  com.sun.tools.javac.util.Iterators$CompoundIterator.hasNext
+        0.89      0.84  com.sun.tools.javac.comp.InferenceContext.filterVars
+        0.92      0.78  com.sun.tools.javac.code.Type$UndetVar.substBounds
+        0.75      0.87  com.sun.tools.javac.code.Types$HashCodeVisitor.visitClassType
+        0.77      0.82  java.lang.Iterable.forEach
+        0.84      0.73  com.sun.tools.javac.code.Type.accept
+        0.73      0.79  com.sun.tools.javac.code.Types.eraseNotNeeded
+        0.71      0.79  com.sun.tools.javac.code.Types$Subst.visitClassType
+        0.75      0.71  com.sun.tools.javac.util.ListBuffer.append
+        0.69      0.76  com.sun.tools.javac.code.Scope$ScopeImpl.getIndex
 
 Largest differences in share, training20 minus noreplay, in percentage points:
-   +0.64  com.sun.tools.javac.code.Types$DefaultTypeVisitor.visit
-   +0.49  com.sun.tools.javac.util.StringNameTable.fromString
-   +0.30  com.sun.tools.javac.code.Type.containsAny
-   +0.19  com.sun.tools.javac.util.ListBuffer.append
+   +0.23  com.sun.tools.javac.code.Types$Subst.visitTypeVar
+   +0.21  com.sun.tools.javac.code.Types$DefaultTypeVisitor.visit
+   +0.18  com.sun.tools.javac.code.Type$ClassType.contains
    +0.18  com.sun.tools.javac.code.Type$ClassType.accept
-   +0.15  com.sun.tools.javac.code.Type.equalsIgnoreMetadata
-   +0.14  com.sun.tools.javac.code.Scope$ScopeListenerList.walkReferences
-   +0.13  java.util.Spliterators$IteratorSpliterator.estimateSize
-   +0.13  com.sun.tools.javac.util.ListBuffer.addAll
-   +0.12  com.sun.tools.javac.comp.InferenceContext.notifyChange
-   +0.12  jdk.internal.jimage.ImageReader$SharedImageReader.findNode
-   +0.11  com.sun.tools.javac.comp.Infer.doIncorporation
+   +0.17  com.sun.tools.javac.util.Convert.chars2utf
+   +0.17  com.sun.tools.javac.code.Types$UnaryVisitor.visit
+   +0.16  com.sun.tools.javac.code.Type$UndetVar.dup
+   +0.14  java.util.stream.ReduceOps$3ReducingSink.begin
+   +0.14  com.sun.tools.javac.util.StringNameTable.fromString
+   +0.13  com.sun.tools.javac.code.Symbol.complete
+   +0.13  com.sun.tools.javac.util.List.intersect
+   +0.13  com.sun.tools.javac.comp.InferenceContext.solveBasic
   ...
-   -0.14  java.util.HashMap.resize
-   -0.14  java.util.stream.AbstractPipeline.copyInto
-   -0.14  com.sun.tools.javac.util.Convert.utf2string
-   -0.15  java.util.Iterator.forEachRemaining
-   -0.15  com.sun.tools.javac.comp.InferenceContext.instTypes
-   -0.16  com.sun.tools.javac.tree.TreeScanner.scan
-   -0.16  java.lang.String.equals
-   -0.17  java.util.stream.ReferencePipeline$2$1.accept
-   -0.21  com.sun.tools.javac.code.Type.isErroneous
-   -0.37  com.sun.tools.javac.util.List$2.next
-   -0.40  java.util.HashMap.getNode
-   -0.45  com.sun.tools.javac.code.Type.hasTag
+   -0.12  com.sun.tools.javac.code.Type$UndetVar.dupTo
+   -0.12  java.util.EnumMap.unmaskNull
+   -0.12  com.sun.tools.javac.util.List$2.next
+   -0.12  com.sun.tools.javac.tree.TreeScanner.scan
+   -0.14  com.sun.tools.javac.jvm.PoolReader.readPoolInternal
+   -0.14  com.sun.tools.javac.code.Type$UndetVar.substBounds
+   -0.14  com.sun.tools.javac.code.Type$StructuralTypeMapping.visitClassType
+   -0.15  com.sun.tools.javac.comp.InferenceContext.save
+   -0.16  com.sun.tools.javac.util.List.isEmpty
+   -0.17  com.sun.tools.javac.code.Type$UndetVar.addBound
+   -0.18  com.sun.tools.javac.jvm.Code.typecode
+   -0.19  com.sun.tools.javac.code.Types$MapVisitor.visitType
