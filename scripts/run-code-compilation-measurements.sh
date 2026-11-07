@@ -142,6 +142,16 @@ python3 -I scripts/analyze-compilation.py "$work/compilation-nocounters.log" \
   > "$out/compilation-nocounters.txt"
 gzip -9 -c "$work/compilation-nocounters.log" > "$out/compilation-nocounters.log.gz"
 
+echo "== AOT code in the caches of different training lengths"
+{
+  echo "AOT code per cache, from -Xlog:aot of one round"
+  for cache in compile-t5 compile-code compile-t60; do
+    echo
+    echo "### $cache.aot"
+    "$java" -Xlog:aot:stdout:none -XX:AOTCache="$work/$cache.aot" $compile 1 | grep "AOT Code Cache"
+  done
+} > "$out/aot-code-entries.txt"
+
 echo "== Cache trained with G1, started with other collectors"
 {
   for gc in SerialGC ParallelGC ZGC; do

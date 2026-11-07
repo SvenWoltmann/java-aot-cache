@@ -1,0 +1,16 @@
+AOT code per cache, from -Xlog:aot of one round (2026-11-07)
+
+### compile-t5.aot
+Mapped 30533336 bytes at address 0x0000000140670010 from AOT Code Cache
+Loaded 6364 AOT code entries from AOT Code Cache
+Read 1161 preload entries from AOT Code Cache
+
+### compile-code.aot
+Mapped 49071648 bytes at address 0x0000000141e70010 from AOT Code Cache
+Loaded 7794 AOT code entries from AOT Code Cache
+Read 1907 preload entries from AOT Code Cache
+
+### compile-t60.aot
+Mapped 61803568 bytes at address 0x0000000143604010 from AOT Code Cache
+Loaded 8623 AOT code entries from AOT Code Cache
+Read 2399 preload entries from AOT Code Cache
