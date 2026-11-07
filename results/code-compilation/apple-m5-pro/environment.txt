@@ -13,3 +13,5 @@ compile-100.csv: measured on 2026-11-07, 10:39-10:50Z, with the caches of 2026-1
 Load at start: 2.13 (1 min), 3.45 (5 min).
 profiles.csv, compilation-nocounters.*, compile-nolinking.aot: 2026-11-07, 10:52-11:00Z.
 Load at start: 2.25 (1 min), 3.66 (5 min).
+aottest.csv, compile-training.csv: measured again on 2026-11-07, 11:52-11:56Z, with the caches of 2026-11-05.
+Load at start: 1.73 (1 min), 2.56 (5 min).

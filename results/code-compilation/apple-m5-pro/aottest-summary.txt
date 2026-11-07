@@ -1,10 +1,10 @@
 results/code-compilation/apple-m5-pro/aottest.csv: 50 runs per variant, quartiles Q1 / median / Q3
 
 none: java -cp target/code-compilation/AotTest.jar AotTest
-  wall time [ms]:      46.1 / 47.5 / 48.0
+  wall time [ms]:      44.4 / 44.7 / 45.2
 
 nocode: java -XX:AOTCache=target/code-compilation/aottest-nocode.aot -cp target/code-compilation/AotTest.jar AotTest
-  wall time [ms]:      35.1 / 35.8 / 36.3
+  wall time [ms]:      33.1 / 33.4 / 33.7
 
 code: java -XX:AOTCache=target/code-compilation/aottest-code.aot -cp target/code-compilation/AotTest.jar AotTest
-  wall time [ms]:      34.0 / 34.7 / 35.2
+  wall time [ms]:      32.7 / 32.9 / 33.3
