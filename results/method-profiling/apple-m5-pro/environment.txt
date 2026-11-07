@@ -28,3 +28,5 @@ Iterative training, 2026-11-07T18:50Z, load at start: 19:50  up 38 days, 13:35, 
 Iterative training, load at end: 20:01  up 38 days, 13:46, 1 user, load averages: 3.31 3.43 3.66
 CPU counters, 2026-11-07T19:01Z, load at start: 20:01  up 38 days, 13:46, 1 user, load averages: 3.31 3.43 3.66
 CPU counters, recordings done, load: 20:06  up 38 days, 13:51, 1 user, load averages: 18.26 9.69 6.22
+Builds compared, 2026-11-07T19:26Z, load at start: 20:26  up 38 days, 14:11, 1 user, load averages: 0.66 1.29 2.56
+Builds compared, load at end: 20:39  up 38 days, 14:24, 1 user, load averages: 2.69 2.92 2.96
