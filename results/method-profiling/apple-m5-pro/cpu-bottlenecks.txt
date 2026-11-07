@@ -1,0 +1,5 @@
+Main thread, last 2 s of each run, share of the four bottleneck metrics in % (median over the runs):
+  variant           useful  processing    delivery   discarded  rows per run
+  none                43.2        14.2        22.1        20.4  2296 2295 2303 2307
+  noreplay            42.9        14.7        22.2        20.2  2313 2299 2312 2301
+  training20          42.4        15.0        22.6        20.0  2342 2315 2321 2331
