@@ -27,3 +27,5 @@ Eager compilation, load at end: 17:04  up 38 days, 10:49, 1 user, load averages:
 Trap history, 2026-11-07T16:18Z, load at start: 17:18  up 38 days, 11:03, 1 user, load averages: 0.80 2.54 3.00
 Trap history, load at end: 17:25  up 38 days, 11:10, 1 user, load averages: 4.65 3.92 3.52
 CPU counters (scripts/run-method-profiling-counters.sh), recorded 2026-11-07T16:07Z-16:13Z, load at start: 17:07  up 38 days, 10:52, 1 user, load averages: 1.70 2.52 2.89; evaluated later from the same recordings
+AotLambda, 2026-11-07T17:05Z, load at start: 18:05  up 38 days, 11:50, 1 user, load averages: 0.67 0.96 1.29
+AotLambda, load at end: 18:07  up 38 days, 11:52, 1 user, load averages: 1.08 1.02 1.27

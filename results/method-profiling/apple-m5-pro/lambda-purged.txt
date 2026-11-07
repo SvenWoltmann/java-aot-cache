@@ -1,0 +1,8 @@
+Rows that the JVM removed from the profiles while writing the training data
+(-Xlog:aot+training=debug, lines with "AotLambda"):
+
+Java 28:
+Purged AotLambda$$Lambda+0x800000001 from MDO: excluded class
+
+Java 25:
+Purged AotLambda$$Lambda+0x80000000d from MDO: excluded class
