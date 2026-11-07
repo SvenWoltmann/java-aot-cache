@@ -1,0 +1,20 @@
+Date: 2026-11-07T14:50Z
+CPU: Apple M5 Pro
+Logical CPUs: 18
+
+openjdk version "28-ea" 2027-03-23
+OpenJDK Runtime Environment (build 28-ea+20-1588)
+OpenJDK 64-Bit Server VM (build 28-ea+20-1588, mixed mode, sharing)
+
+openjdk version "25.0.2" 2026-01-20
+OpenJDK Runtime Environment (build 25.0.2+10-69)
+OpenJDK 64-Bit Server VM (build 25.0.2+10-69, mixed mode, sharing)
+
+     intx CICompilerCount                          = 12                                        {product} {ergonomic}
+     intx TypeProfileMajorReceiverPercent          = 90                                     {C2 product} {default}
+     intx TypeProfileWidth                         = 2                                         {product} {default}
+
+Load at start: 15:50  up 38 days,  9:35, 1 user, load averages: 2.38 1.93 1.50
+Load at end: 16:09  up 38 days,  9:54, 1 user, load averages: 3.42 3.38 3.05
+training-length.csv repeated with the same caches, because other JVMs ran on the machine during the first series (14:52-14:58Z): 2026-11-07T15:11Z, load at start: 16:11  up 38 days,  9:56, 1 user, load averages: 1.58 2.78 2.85
+training-length.csv repeated, load at end: 16:21  up 38 days, 10:06, 1 user, load averages: 3.96 4.09 3.54

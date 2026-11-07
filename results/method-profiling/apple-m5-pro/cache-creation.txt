@@ -1,0 +1,9 @@
+Cache creation (training run + assembly), wall time in seconds and cache size in bytes
+
+Java 28, AotCompile, 5 training iterations, without AOT code: 2.251 s, 35864576 bytes
+Java 28, AotCompile, 20 training iterations, without AOT code: 3.695 s, 37847040 bytes
+Java 28, AotCompile, 60 training iterations, without AOT code: 6.384 s, 38993920 bytes
+Java 28, AotCompile, 100 training iterations, without AOT code: 8.711 s, 39370752 bytes
+Java 25, AotCompile, 20 training iterations: 2.883 s, 33538048 bytes
+Java 28, HelloStreamWarmup: 12042240 bytes
+Java 25, HelloStreamWarmup: 10633216 bytes

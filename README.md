@@ -9,6 +9,7 @@ Example programs and measurements of the HappyCoders.eu articles on the AOT cach
 
 * "Ahead-of-Time Class Loading & Linking" – JEP 483, 514, 515 and 516 ([English](https://www.happycoders.eu/java/ahead-of-time-class-loading-and-linking/), [German](https://www.happycoders.eu/de/java/ahead-of-time-class-loading-and-linking/))
 * "Ahead-of-Time Code Compilation" – JEP 544, Java 28 (not yet published)
+* "Ahead-of-Time Method Profiling" – JEP 515, Java 25 (in preparation)
 
 ## Programs
 
@@ -50,6 +51,8 @@ java -XX:+UnlockDiagnosticVMOptions -XX:-AOTCodeCaching \
 
 ## Measurements
 
+### AOT code (JEP 544)
+
 `scripts/run-code-compilation-measurements.sh <path-to-jdk-28> <machine-id>` reproduces all measurements of the code-compilation article in about 30 minutes and writes them to `results/code-compilation/<machine-id>/`:
 
 * `environment.txt` – date, CPU and JDK build
@@ -61,5 +64,17 @@ java -XX:+UnlockDiagnosticVMOptions -XX:-AOTCodeCaching \
 * `compilation-<variant>.txt`, `compilation-<variant>.log.gz` – `-XX:+PrintCompilation` logs of 40 rounds and their evaluation by `scripts/analyze-compilation.py`; `compilation-nocounters.*` is a run of 60 rounds with the cache whose AOT code has no counters
 * `aot-code-entries.txt` – how much AOT code the caches from training runs of 5, 20 and 60 rounds contain (`-Xlog:aot`)
 * `gc-mismatch.txt` – what happens when the cache was created with G1 and the application starts with the Serial, Parallel or Z garbage collector
+
+### Method profiles (JEP 515)
+
+`scripts/run-method-profiling-measurements.sh <path-to-jdk-28> <path-to-jdk-25> <machine-id>` measures what the method profiles in the AOT cache do to the warmup and the peak performance, in about 20 minutes, and writes the results to `results/method-profiling/<machine-id>/`. All Java 28 caches are created with `-XX:-AOTCodeCaching`, so they contain classes and profiles but no AOT code – like a Java 25 cache. In the variants, `noreplay` is the cache from 20 training iterations started with `-XX:+UnlockDiagnosticVMOptions -XX:-AOTReplayTraining`: the JVM uses the loaded and linked classes, but not the profiles.
+
+* `environment.txt`, `cache-creation.txt` – as above; caches from training runs of 5, 20, 60 and 100 iterations
+* `training-length.csv`, `training-length-summary.txt` – Java 28, 15 runs of 100 iterations: without a cache, `noreplay`, and the four training lengths
+* `java25.csv`, `java25-summary.txt` – Java 25, 15 runs of 100 iterations: without a cache, `noreplay`, and the cache from 20 training iterations
+* `hello-java28.csv`, `hello-java25.csv` and their summaries – the example program of JEP 515 (`scripts/HelloStreamWarmup.java`), 30 starts each without a cache, with a cache but without profiles, and with profiles
+* `compilations-<java>-<variant>.txt`, `compilation-<java>-<variant>.log.gz` – one run of 100 iterations with `-XX:+PrintCompilation -XX:+CITime`: the compilations per iteration and level (`scripts/compilations-per-iteration.py`) and the accumulated compiler times
+* `logcompilation-java28-<variant>.txt` – one run of 100 iterations with `-XX:+LogCompilation`, evaluated by `scripts/analyze-logcompilation.py`: the level each method ends with, the compile queue per level and time window – including the compilations the JVM queues without an invocation (reason `must_be_compiled`) –, and for the C2 compilations the trap history in the profiles, the speculations C2 drops because of it, the type profiles of the virtual call sites and the inlining decisions; the logs themselves are about 100 MB each and not part of the results
+* `jfr-samples-java28.txt` – JFR execution samples from second 4 to the end of 5 runs each, with and without the profiles, evaluated by `scripts/analyze-jfr-samples.py`: where the time goes, as shares per leaf method, and the bytes allocated by the main thread
 
 `scripts/measure.py` starts the variants alternately, measures the wall time of each `java` process and collects the duration of each round. The summaries give the first quartile, the median and the third quartile.
