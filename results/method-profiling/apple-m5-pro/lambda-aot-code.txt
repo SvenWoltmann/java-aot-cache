@@ -1,0 +1,22 @@
+Cache with AOT code, created by OpenJDK Runtime Environment (build 28-ea+23-1886)
+AOTCache creation is complete: target/method-profiling/aot-code/AotLambda-code.aot 13746176 bytes
+
+Rows removed from the profiles while writing the training data (-Xlog:aot+training=debug):
+  Purged AotLambda$$Lambda+0x800000001 from MDO: excluded class
+
+Compilations of Steps and of the lambda, and C2's decisions on op.applyAsInt(),
+one run of 10 iterations with the cache with AOT code
+(-XX:+PrintCompilation -XX:+PrintInlining; AOT code is marked in the PrintCompilation lines)
+12 172 AP 4 AotLambda$Steps::step (8 bytes)
+12 173 AP 4 AotLambda$Steps::run (32 bytes)
+13 332 A 4 AotLambda$Steps::step (8 bytes)
+13 172 AP 4 AotLambda$Steps::step (8 bytes) made not entrant: not used
+13 333 A 4 AotLambda$Steps::run (32 bytes)
+13 173 AP 4 AotLambda$Steps::run (32 bytes) made not entrant: not used
+522 334 3 AotLambda$$Lambda/0x800000004::applyAsInt (13 bytes)
+523 335 4 AotLambda$$Lambda/0x800000004::applyAsInt (13 bytes)
+524 334 3 AotLambda$$Lambda/0x800000004::applyAsInt (13 bytes) made not entrant: not used
+566 336 4 AotLambda$Steps::run (32 bytes)
+567 333 A 4 AotLambda$Steps::run (32 bytes) made not entrant: not used
+@ 19 AotLambda$Steps::step (8 bytes) inline (hot)
+@ 2 AotLambda$$Lambda/0x800000004::applyAsInt (13 bytes) failed to inline: low call site frequency

@@ -30,3 +30,5 @@ CPU counters, 2026-11-07T19:01Z, load at start: 20:01  up 38 days, 13:46, 1 user
 CPU counters, recordings done, load: 20:06  up 38 days, 13:51, 1 user, load averages: 18.26 9.69 6.22
 Builds compared, 2026-11-07T19:26Z, load at start: 20:26  up 38 days, 14:11, 1 user, load averages: 0.66 1.29 2.56
 Builds compared, load at end: 20:39  up 38 days, 14:24, 1 user, load averages: 2.69 2.92 2.96
+AotLambda with AOT code, 2026-11-07T19:52Z, load at start: 20:52  up 38 days, 14:37, 1 user, load averages: 0.82 1.06 1.78
+AotLambda with AOT code, load at end: 20:53  up 38 days, 14:38, 1 user, load averages: 1.02 1.09 1.72
