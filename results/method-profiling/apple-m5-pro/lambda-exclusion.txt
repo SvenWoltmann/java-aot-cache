@@ -1,0 +1,23 @@
+Lines on the lambda class of AotLambda, OpenJDK Runtime Environment (build 28-ea+23-1886)
+(-Xlog:aot=debug,aot+training=debug, in the second run also class+load=info;
+one log per process: training run, then assembly)
+
+### first training run
+process 88237:
+  Skipping AotLambda$$Lambda+0x800000001: Unreferenced hidden class
+  Cleanup KTD AotLambda$$Lambda+0x800000001
+  Purged AotLambda$$Lambda+0x800000001 from MDO: excluded class
+process 88238:
+  (none)
+
+### second training run
+process 88239:
+  AotLambda$$Lambda/0x800000004 source: shared objects file
+  Skipping AotLambda$$Lambda+0x800000004: Unreferenced hidden class
+  Cleanup KTD AotLambda$$Lambda+0x800000004
+  Purged AotLambda$$Lambda+0x800000004 from MDO: excluded class
+process 88241:
+  AotLambda$$Lambda/0x800000004 source: AotLambda
+
+### where the lambda class comes from in a run with the first cache (-Xlog:class+load)
+  AotLambda$$Lambda/0x800000004 source: shared objects file
