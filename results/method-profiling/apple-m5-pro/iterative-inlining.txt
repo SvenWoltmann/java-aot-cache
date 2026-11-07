@@ -1,0 +1,25 @@
+A: target/method-profiling/iterative/logcompilation-noreplay.xml
+B: target/method-profiling/iterative/logcompilation-plus20.xml
+Methods compiled by C2 in both: 2273 (only A: 315, only B: 304)
+
+Call sites inlined in A but not in B, by B's reason (551 in total):
+     163  low call site frequency
+     121  already compiled into a big method
+     108  NodeCountInliningCutoff
+      80  too big
+      32  already compiled into a medium method
+      13  size > DesiredMethodLimit
+      12  call site not reached
+      12  virtual call
+       9  never executed
+       1  failed initial checks
+  of which through lambda, method handle or string concatenation classes: 122
+
+Call sites inlined in B but not in A, by A's reason (320 in total):
+     107  already compiled into a big method
+      60  already compiled into a medium method
+      53  low call site frequency
+      40  NodeCountInliningCutoff
+      35  too big
+      25  size > DesiredMethodLimit
+  of which through lambda, method handle or string concatenation classes: 0

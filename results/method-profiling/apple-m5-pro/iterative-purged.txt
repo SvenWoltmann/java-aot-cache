@@ -1,0 +1,35 @@
+### lambda-first
+AOTCache creation is complete: target/method-profiling/iterative/AotLambda-first.aot 13303808 bytes
+Rows removed from type profiles ("Purged ... from MDO"), by reason and kind of class:
+      4  excluded class, other class
+      2  excluded class, lambda class
+      6  in total
+
+### lambda-second
+AOTCache creation is complete: target/method-profiling/iterative/AotLambda-second.aot 13303808 bytes
+Rows removed from type profiles ("Purged ... from MDO"), by reason and kind of class:
+      2  excluded class, lambda class
+      2  in total
+
+
+### compile-first
+AOTCache creation is complete: target/method-profiling/iterative/compile-t20.aot 38305792 bytes
+Rows removed from type profiles ("Purged ... from MDO"), by reason and kind of class:
+    445  excluded class, lambda class
+      1  excluded class, other class
+    446  in total
+
+### compile-second
+AOTCache creation is complete: target/method-profiling/iterative/compile-t20-plus20.aot 39075840 bytes
+Rows removed from type profiles ("Purged ... from MDO"), by reason and kind of class:
+    412  excluded class, lambda class
+      2  excluded class, other class
+    414  in total
+
+### compile-t40
+AOTCache creation is complete: target/method-profiling/iterative/compile-t40.aot 39223296 bytes
+Rows removed from type profiles ("Purged ... from MDO"), by reason and kind of class:
+    456  excluded class, lambda class
+      1  excluded class, other class
+    457  in total
+

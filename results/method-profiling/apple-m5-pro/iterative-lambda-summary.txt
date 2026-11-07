@@ -1,0 +1,33 @@
+results/method-profiling/apple-m5-pro/iterative-lambda.csv: 10 runs per variant, quartiles Q1 / median / Q3
+
+none: java28 -cp target/method-profiling/lambda/28/AotLambda.jar AotLambda 30
+  wall time [ms]:      1309.1 / 1314.1 / 1320.1
+  iteration 1 [ms]:    50.0 / 50.0 / 51.0
+  median per iteration [ms]: 50 27 25 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24
+  iterations 1-1, mean per iteration [ms]: 50.0 / 50.0 / 51.0
+  iterations 2-5, mean per iteration [ms]: 24.8 / 25.0 / 25.0
+  iterations 6-30, mean per iteration [ms]: 24.0 / 24.0 / 24.0
+
+noreplay: java28 -XX:+UnlockDiagnosticVMOptions -XX:-AOTReplayTraining -XX:AOTCache=target/method-profiling/iterative/AotLambda-first.aot -cp target/method-profiling/lambda/28/AotLambda.jar AotLambda 30
+  wall time [ms]:      1295.5 / 1300.0 / 1312.5
+  iteration 1 [ms]:    49.0 / 50.0 / 51.0
+  median per iteration [ms]: 50 28 25 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24
+  iterations 1-1, mean per iteration [ms]: 49.0 / 50.0 / 51.0
+  iterations 2-5, mean per iteration [ms]: 25.0 / 25.1 / 25.2
+  iterations 6-30, mean per iteration [ms]: 23.9 / 24.0 / 24.1
+
+first: java28 -XX:AOTCache=target/method-profiling/iterative/AotLambda-first.aot -cp target/method-profiling/lambda/28/AotLambda.jar AotLambda 30
+  wall time [ms]:      3225.4 / 3233.3 / 3243.7
+  iteration 1 [ms]:    115.0 / 116.5 / 118.0
+  median per iteration [ms]: 116.5 88 88 88.5 88 88.5 89 89 89 88.5 88 88 88.5 89 89 88.5 89 88 88.5 88 88.5 88.5 88 88 89 88 89 89 88 88
+  iterations 1-1, mean per iteration [ms]: 115.0 / 116.5 / 118.0
+  iterations 2-5, mean per iteration [ms]: 88.0 / 88.1 / 89.1
+  iterations 6-30, mean per iteration [ms]: 88.1 / 88.5 / 89.0
+
+second: java28 -XX:AOTCache=target/method-profiling/iterative/AotLambda-second.aot -cp target/method-profiling/lambda/28/AotLambda.jar AotLambda 30
+  wall time [ms]:      3218.5 / 3234.0 / 3243.8
+  iteration 1 [ms]:    114.8 / 116.0 / 117.2
+  median per iteration [ms]: 116 88 88 88.5 88 88 88.5 88.5 88.5 89 88.5 88.5 88.5 88 88 89 89 89 89 89 89 88.5 88.5 88.5 89 88.5 88 89 88 89
+  iterations 1-1, mean per iteration [ms]: 114.8 / 116.0 / 117.2
+  iterations 2-5, mean per iteration [ms]: 87.9 / 88.1 / 89.0
+  iterations 6-30, mean per iteration [ms]: 88.1 / 88.5 / 89.0
