@@ -7,3 +7,4 @@ Java 28, AotCompile, 100 training iterations, without AOT code: 8.504 s, 3984588
 Java 25, AotCompile, 20 training iterations: 2.790 s, 33538048 bytes
 Java 28, HelloStreamWarmup: 12058624 bytes
 Java 25, HelloStreamWarmup: 10633216 bytes
+Java 25, AotCompile, 100 training iterations: 8.226 s, 34668544 bytes
