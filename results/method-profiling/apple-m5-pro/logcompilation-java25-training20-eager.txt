@@ -3,31 +3,32 @@ Methods by the level of the code they end with:
 
 Compile queue and compiler-thread time per level and window after JVM start
   (queued tasks, of which queued without an invocation (reason must_be_compiled);
-  median / 90th percentile of the queue wait in ms; sum of compilation times in ms):
+  median / 90th percentile of the queue wait in ms, of all tasks and of the tasks
+  queued with an invocation (not must_be_compiled); sum of compilation times in ms):
   level 1:
-    0.00-0.25 s    queued   257 (  218)   wait   598.0 /   709.0   compiling       32
-    0.25-0.50 s    queued    27 (   20)   wait   312.0 /   450.0   compiling        6
-    0.50-1.00 s    queued     5 (    0)   wait     0.0 /     0.0   compiling        2
-    1.00-2.00 s    queued     3 (    0)   wait     0.0 /     0.0   compiling        0
-    2.00 s-end     queued    40 (    0)   wait     0.0 /     1.0   compiling        1
+    0.00-0.25 s    queued   257 (  218)   wait   598.0 /   709.0   invoked     1.0 /    85.0   compiling       32
+    0.25-0.50 s    queued    27 (   20)   wait   312.0 /   450.0   invoked     0.0 /   224.0   compiling        6
+    0.50-1.00 s    queued     5 (    0)   wait     0.0 /     0.0   invoked     0.0 /     0.0   compiling        2
+    1.00-2.00 s    queued     3 (    0)   wait     0.0 /     0.0   invoked     0.0 /     0.0   compiling        0
+    2.00 s-end     queued    40 (    0)   wait     0.0 /     1.0   invoked     0.0 /     1.0   compiling        1
   level 2:
-    0.00-0.25 s    queued  4148 ( 3645)   wait   208.0 /   632.0   compiling     1427
-    0.25-0.50 s    queued   704 (  674)   wait   233.0 /   403.0   compiling      408
-    0.50-1.00 s    queued   111 (    0)   wait     0.0 /     1.0   compiling       24
-    1.00-2.00 s    queued     7 (    0)   wait     0.0 /     0.0   compiling        3
-    2.00 s-end     queued    12 (    0)   wait     0.0 /     0.0   compiling        8
+    0.00-0.25 s    queued  4148 ( 3645)   wait   208.0 /   632.0   invoked     1.0 /    58.0   compiling     1427
+    0.25-0.50 s    queued   704 (  674)   wait   233.0 /   403.0   invoked     1.0 /    76.0   compiling      408
+    0.50-1.00 s    queued   111 (    0)   wait     0.0 /     1.0   invoked     0.0 /     1.0   compiling       24
+    1.00-2.00 s    queued     7 (    0)   wait     0.0 /     0.0   invoked     0.0 /     0.0   compiling        3
+    2.00 s-end     queued    12 (    0)   wait     0.0 /     0.0   invoked     0.0 /     0.0   compiling        8
   level 3:
-    0.00-0.25 s    queued    97 (   95)   wait   140.0 /   615.0   compiling       20
-    0.25-0.50 s    queued    10 (    9)   wait   337.0 /   475.0   compiling        1
-    0.50-1.00 s    queued   130 (    0)   wait     0.0 /     0.0   compiling       23
-    1.00-2.00 s    queued    68 (    0)   wait     0.0 /     0.0   compiling       12
-    2.00 s-end     queued   504 (    0)   wait     0.0 /     0.0   compiling      124
+    0.00-0.25 s    queued    97 (   95)   wait   140.0 /   615.0   invoked     0.0 /     0.0   compiling       20
+    0.25-0.50 s    queued    10 (    9)   wait   337.0 /   475.0   invoked     7.0 /     7.0   compiling        1
+    0.50-1.00 s    queued   130 (    0)   wait     0.0 /     0.0   invoked     0.0 /     0.0   compiling       23
+    1.00-2.00 s    queued    68 (    0)   wait     0.0 /     0.0   invoked     0.0 /     0.0   compiling       12
+    2.00 s-end     queued   504 (    0)   wait     0.0 /     0.0   invoked     0.0 /     0.0   compiling      124
   level 4:
-    0.00-0.25 s    queued   455 (  282)   wait     0.0 /     5.0   compiling     1328
-    0.25-0.50 s    queued   410 (  158)   wait   140.0 /   312.0   compiling     2544
-    0.50-1.00 s    queued   693 (    0)   wait     1.0 /    86.0   compiling     2137
-    1.00-2.00 s    queued   304 (    0)   wait     0.0 /     2.0   compiling     1483
-    2.00 s-end     queued   194 (    0)   wait     0.0 /     1.0   compiling      856
+    0.00-0.25 s    queued   455 (  282)   wait     0.0 /     5.0   invoked     0.0 /     3.0   compiling     1328
+    0.25-0.50 s    queued   410 (  158)   wait   140.0 /   312.0   invoked   122.0 /   215.0   compiling     2544
+    0.50-1.00 s    queued   693 (    0)   wait     1.0 /    86.0   invoked     1.0 /    86.0   compiling     2137
+    1.00-2.00 s    queued   304 (    0)   wait     0.0 /     2.0   invoked     0.0 /     2.0   compiling     1483
+    2.00 s-end     queued   194 (    0)   wait     0.0 /     1.0   invoked     0.0 /     1.0   compiling      856
 
 All C2 compilations (level 4, no OSR): 2056 compilations
   with trap history in the profile:          553

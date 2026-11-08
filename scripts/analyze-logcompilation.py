@@ -144,18 +144,23 @@ def print_queue(tasks, queued):
     started = {t["id"]: t for t in tasks}
     print("\nCompile queue and compiler-thread time per level and window after JVM start")
     print("  (queued tasks, of which queued without an invocation (reason must_be_compiled);")
-    print("  median / 90th percentile of the queue wait in ms; sum of compilation times in ms):")
+    print("  median / 90th percentile of the queue wait in ms, of all tasks and of the tasks")
+    print("  queued with an invocation (not must_be_compiled); sum of compilation times in ms):")
     for level in (1, 2, 3, 4):
         print(f"  level {level}:")
         for first, last in WINDOWS:
             ids = [i for i, (lv, st, _) in queued.items() if lv == level and first <= st < last]
             eager = sum(1 for i in ids if queued[i][2] == "must_be_compiled")
             waits = [(started[i]["stamp"] - queued[i][1]) * 1000 for i in ids if i in started]
+            invoked = [(started[i]["stamp"] - queued[i][1]) * 1000 for i in ids
+                       if i in started and queued[i][2] != "must_be_compiled"]
             busy = sum((started[i]["done"] - started[i]["stamp"]) * 1000
                        for i in ids if i in started and started[i]["done"] is not None)
             window = f"{first:.2f}-{last:.2f} s" if last < 1e8 else f"{first:.2f} s-end"
             print(f"    {window:<14} queued {len(ids):5d} ({eager:5d})   wait"
-                  f" {quantile(waits, 0.5):7.1f} / {quantile(waits, 0.9):7.1f}   compiling {busy:8.0f}")
+                  f" {quantile(waits, 0.5):7.1f} / {quantile(waits, 0.9):7.1f}"
+                  f"   invoked {quantile(invoked, 0.5):7.1f} / {quantile(invoked, 0.9):7.1f}"
+                  f"   compiling {busy:8.0f}")
 
 
 def summarize(title, tasks):
