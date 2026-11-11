@@ -1,0 +1,153 @@
+AotLambda with and without the pause before the first call of Steps.run()
+(AotLambdaNoPause is AotLambda without these two lines):
+
+9,10d8
+<   Steps.init();
+<   Thread.sleep(500); // gives the JVM time to compile Steps before its first call
+
+== Java 28: openjdk version "28-ea" 2027-03-23
+
+-- AotLambda, mean of iterations 6 to 10 in ms, 3 runs each
+   none      24.4 24.0 24.0
+   noreplay  24.0 24.6 24.0
+   profiles  89.2 89.4 89.8
+
+-- AotLambda, noreplay, one run with -XX:+PrintCompilation -XX:+PrintInlining
+   compilations of Steps::run and Steps::step (timestamp in ms, compile id, flags, level):
+   516 164 3 AotLambda$Steps::step (8 bytes)
+   516 167 4 AotLambda$Steps::step (8 bytes)
+   517 164 3 AotLambda$Steps::step (8 bytes) made not entrant: not used
+   518 168 % 3 AotLambda$Steps::run @ 6 (32 bytes)
+   518 169 3 AotLambda$Steps::run (32 bytes)
+   519 170 % 4 AotLambda$Steps::run @ 6 (32 bytes)
+   524 168 % 3 AotLambda$Steps::run @ 6 (32 bytes) made not entrant: OSR invalidation of lower level
+   524 171 4 AotLambda$Steps::run (32 bytes)
+   527 169 3 AotLambda$Steps::run (32 bytes) made not entrant: not used
+   C2's decisions on the lambda call (TypeProfile: calls of the lambda class at the call site):
+   applyAsInt (13 bytes) inline (hot) TypeProfile (7336/7336 counts) = AotLambda$$Lambda+0x800000004
+   applyAsInt (13 bytes) inline (hot) TypeProfile (108979/108979 counts) = AotLambda$$Lambda+0x800000004
+   applyAsInt (13 bytes) inline (hot) TypeProfile (1000572/1000572 counts) = AotLambda$$Lambda+0x800000004
+
+-- AotLambda, profiles, one run with -XX:+PrintCompilation -XX:+PrintInlining
+   compilations of Steps::run and Steps::step (timestamp in ms, compile id, flags, level):
+   32 320 2 AotLambda$Steps::run (32 bytes)
+   517 321 % 4 AotLambda$Steps::run @ 6 (32 bytes)
+   520 322 4 AotLambda$Steps::run (32 bytes)
+   521 320 2 AotLambda$Steps::run (32 bytes) made not entrant: not used
+   521 325 4 AotLambda$Steps::step (8 bytes)
+   522 319 2 AotLambda$Steps::step (8 bytes) made not entrant: not used
+   C2's decisions on the lambda call (TypeProfile: calls of the lambda class at the call site):
+   applyAsInt (13 bytes) failed to inline: never executed
+   applyAsInt (13 bytes) failed to inline: low call site frequency
+   applyAsInt (13 bytes) failed to inline: low call site frequency
+
+-- AotLambdaNoPause, mean of iterations 6 to 10 in ms, 3 runs each
+   none      24.0 24.0 24.0
+   noreplay  24.2 24.2 24.8
+   profiles  25.0 25.0 24.8
+
+-- AotLambdaNoPause, noreplay, one run with -XX:+PrintCompilation -XX:+PrintInlining
+   compilations of Steps::run and Steps::step (timestamp in ms, compile id, flags, level):
+   14 164 3 AotLambdaNoPause$Steps::step (8 bytes)
+   14 167 4 AotLambdaNoPause$Steps::step (8 bytes)
+   14 164 3 AotLambdaNoPause$Steps::step (8 bytes) made not entrant: not used
+   14 168 % 3 AotLambdaNoPause$Steps::run @ 6 (32 bytes)
+   15 169 3 AotLambdaNoPause$Steps::run (32 bytes)
+   15 170 % 4 AotLambdaNoPause$Steps::run @ 6 (32 bytes)
+   17 168 % 3 AotLambdaNoPause$Steps::run @ 6 (32 bytes) made not entrant: OSR invalidation of lower level
+   17 171 4 AotLambdaNoPause$Steps::run (32 bytes)
+   18 169 3 AotLambdaNoPause$Steps::run (32 bytes) made not entrant: not used
+   C2's decisions on the lambda call (TypeProfile: calls of the lambda class at the call site):
+   applyAsInt (13 bytes) inline (hot) TypeProfile (7735/7735 counts) = AotLambdaNoPause$$Lambda+0x800000004
+   applyAsInt (13 bytes) inline (hot) TypeProfile (126279/126279 counts) = AotLambdaNoPause$$Lambda+0x800000004
+   applyAsInt (13 bytes) inline (hot) TypeProfile (981666/981666 counts) = AotLambdaNoPause$$Lambda+0x800000004
+
+-- AotLambdaNoPause, profiles, one run with -XX:+PrintCompilation -XX:+PrintInlining
+   compilations of Steps::run and Steps::step (timestamp in ms, compile id, flags, level):
+   14 321 2 AotLambdaNoPause$Steps::run (32 bytes)
+   32 318 2 AotLambdaNoPause$Steps::step (8 bytes)
+   32 324 % 4 AotLambdaNoPause$Steps::run @ 6 (32 bytes)
+   34 323 % 2 AotLambdaNoPause$Steps::run @ 6 (32 bytes) made not entrant: OSR invalidation of lower level
+   35 325 4 AotLambdaNoPause$Steps::run (32 bytes)
+   36 321 2 AotLambdaNoPause$Steps::run (32 bytes) made not entrant: not used
+   36 326 4 AotLambdaNoPause$Steps::step (8 bytes)
+   36 318 2 AotLambdaNoPause$Steps::step (8 bytes) made not entrant: not used
+   C2's decisions on the lambda call (TypeProfile: calls of the lambda class at the call site):
+   applyAsInt (13 bytes) inline (hot) TypeProfile (99873/99873 counts) = AotLambdaNoPause$$Lambda+0x800000004
+   applyAsInt (13 bytes) inline (hot) TypeProfile (99873/99873 counts) = AotLambdaNoPause$$Lambda+0x800000004
+   applyAsInt (13 bytes) inline (hot) TypeProfile (99873/99873 counts) = AotLambdaNoPause$$Lambda+0x800000004
+
+== Java 25: openjdk version "25.0.2" 2026-01-20
+
+-- AotLambda, mean of iterations 6 to 10 in ms, 3 runs each
+   none      24.0 24.0 24.0
+   noreplay  24.0 25.0 24.2
+   profiles  91.8 92.2 92.0
+
+-- AotLambda, noreplay, one run with -XX:+PrintCompilation -XX:+PrintInlining
+   compilations of Steps::run and Steps::step (timestamp in ms, compile id, flags, level):
+   518 41 3 AotLambda$Steps::step (8 bytes)
+   518 44 4 AotLambda$Steps::step (8 bytes)
+   519 41 3 AotLambda$Steps::step (8 bytes) made not entrant: not used
+   520 45 % 3 AotLambda$Steps::run @ 6 (32 bytes)
+   520 46 3 AotLambda$Steps::run (32 bytes)
+   521 47 % 4 AotLambda$Steps::run @ 6 (32 bytes)
+   525 45 % 3 AotLambda$Steps::run @ 6 (32 bytes) made not entrant: OSR invalidation of lower level
+   525 48 4 AotLambda$Steps::run (32 bytes)
+   528 46 3 AotLambda$Steps::run (32 bytes) made not entrant: not used
+   C2's decisions on the lambda call (TypeProfile: calls of the lambda class at the call site):
+   applyAsInt (13 bytes) inline (hot) TypeProfile (10014/10014 counts) = AotLambda$$Lambda+0x800000011
+   applyAsInt (13 bytes) inline (hot) TypeProfile (134803/134803 counts) = AotLambda$$Lambda+0x800000011
+   applyAsInt (13 bytes) inline (hot) TypeProfile (892678/892678 counts) = AotLambda$$Lambda+0x800000011
+
+-- AotLambda, profiles, one run with -XX:+PrintCompilation -XX:+PrintInlining
+   compilations of Steps::run and Steps::step (timestamp in ms, compile id, flags, level):
+   516 49 2 AotLambda$Steps::step (8 bytes)
+   517 52 % 2 AotLambda$Steps::run @ 6 (32 bytes)
+   517 53 4 AotLambda$Steps::step (8 bytes)
+   518 49 2 AotLambda$Steps::step (8 bytes) made not entrant: not used
+   518 54 % 4 AotLambda$Steps::run @ 6 (32 bytes)
+   520 52 % 2 AotLambda$Steps::run @ 6 (32 bytes) made not entrant: OSR invalidation of lower level
+   520 56 2 AotLambda$Steps::run (32 bytes)
+   521 57 4 AotLambda$Steps::run (32 bytes)
+   522 56 2 AotLambda$Steps::run (32 bytes) made not entrant: not used
+   C2's decisions on the lambda call (TypeProfile: calls of the lambda class at the call site):
+   applyAsInt (13 bytes) failed to inline: low call site frequency TypeProfile (5627/5627 counts) = AotLambda$$Lambda+0x800000011
+   applyAsInt (13 bytes) failed to inline: low call site frequency TypeProfile (5627/5627 counts) = AotLambda$$Lambda+0x800000011
+   applyAsInt (13 bytes) failed to inline: low call site frequency TypeProfile (5627/5627 counts) = AotLambda$$Lambda+0x800000011
+
+-- AotLambdaNoPause, mean of iterations 6 to 10 in ms, 3 runs each
+   none      24.0 24.0 24.0
+   noreplay  24.0 24.0 24.8
+   profiles  93.0 92.2 91.8
+
+-- AotLambdaNoPause, noreplay, one run with -XX:+PrintCompilation -XX:+PrintInlining
+   compilations of Steps::run and Steps::step (timestamp in ms, compile id, flags, level):
+   14 42 3 AotLambdaNoPause$Steps::step (8 bytes)
+   14 42 3 AotLambdaNoPause$Steps::step (8 bytes) made not entrant: not used
+   15 46 % 3 AotLambdaNoPause$Steps::run @ 6 (32 bytes)
+   15 47 3 AotLambdaNoPause$Steps::run (32 bytes)
+   15 48 % 4 AotLambdaNoPause$Steps::run @ 6 (32 bytes)
+   17 46 % 3 AotLambdaNoPause$Steps::run @ 6 (32 bytes) made not entrant: OSR invalidation of lower level
+   17 49 4 AotLambdaNoPause$Steps::run (32 bytes)
+   19 47 3 AotLambdaNoPause$Steps::run (32 bytes) made not entrant: not used
+   C2's decisions on the lambda call (TypeProfile: calls of the lambda class at the call site):
+   applyAsInt (13 bytes) inline (hot) TypeProfile (9026/9026 counts) = AotLambdaNoPause$$Lambda+0x800000011
+   applyAsInt (13 bytes) inline (hot) TypeProfile (131554/131554 counts) = AotLambdaNoPause$$Lambda+0x800000011
+   applyAsInt (13 bytes) inline (hot) TypeProfile (914846/914846 counts) = AotLambdaNoPause$$Lambda+0x800000011
+
+-- AotLambdaNoPause, profiles, one run with -XX:+PrintCompilation -XX:+PrintInlining
+   compilations of Steps::run and Steps::step (timestamp in ms, compile id, flags, level):
+   14 49 2 AotLambdaNoPause$Steps::step (8 bytes)
+   14 52 % 2 AotLambdaNoPause$Steps::run @ 6 (32 bytes)
+   14 53 4 AotLambdaNoPause$Steps::step (8 bytes)
+   14 54 2 AotLambdaNoPause$Steps::run (32 bytes)
+   14 49 2 AotLambdaNoPause$Steps::step (8 bytes) made not entrant: not used
+   14 55 % 4 AotLambdaNoPause$Steps::run @ 6 (32 bytes)
+   15 52 % 2 AotLambdaNoPause$Steps::run @ 6 (32 bytes) made not entrant: OSR invalidation of lower level
+   15 57 4 AotLambdaNoPause$Steps::run (32 bytes)
+   16 54 2 AotLambdaNoPause$Steps::run (32 bytes) made not entrant: not used
+   C2's decisions on the lambda call (TypeProfile: calls of the lambda class at the call site):
+   applyAsInt (13 bytes) failed to inline: low call site frequency TypeProfile (2459/2459 counts) = AotLambdaNoPause$$Lambda+0x800000011
+   applyAsInt (13 bytes) failed to inline: low call site frequency TypeProfile (2459/2459 counts) = AotLambdaNoPause$$Lambda+0x800000011
+   applyAsInt (13 bytes) failed to inline: low call site frequency TypeProfile (2459/2459 counts) = AotLambdaNoPause$$Lambda+0x800000011

@@ -34,3 +34,5 @@ AotLambda with AOT code, 2026-11-07T19:52Z, load at start: 20:52  up 38 days, 14
 AotLambda with AOT code, load at end: 20:53  up 38 days, 14:38, 1 user, load averages: 1.02 1.09 1.72
 Java 25 long run, 2026-11-08T12:39Z, load at start: 13:39  up 39 days,  7:24, 1 user, load averages: 1.91 2.97 3.35
 Java 25 long run, load at end: 13:43  up 39 days,  7:29, 1 user, load averages: 3.88 3.47 3.47
+AotLambda pause, 2026-11-11T14:14Z, load at start: 15:14  up 42 days,  8:59, 1 user, load averages: 4.09 3.93 4.00
+AotLambda pause, load at end: 15:15  up 42 days, 9 hrs, 1 user, load averages: 4.21 3.97 4.01
